@@ -1,0 +1,13 @@
+"#triggerApp"
+- xampp php 8.2 ---- php atao agnaty variable environement
+- nodejs pour runer npm
+- git clone https://github.com/GhostsRd/triggerApp.git
+- cd triggerApp
+- renomer .env.example .env
+- creer database name laravel
+- composer install ---- minstalll anle laravel le vendor
+- npm install
+- php artisan migrate:fresh  ---- mamindra anle table am base de donner
+- php artisan serve
+- npm run dev
+- Go to http://127.0.0.1:8000/
