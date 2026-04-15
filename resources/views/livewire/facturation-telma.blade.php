@@ -159,14 +159,14 @@
                 @endforelse
             </tbody>
         </table>
+        <div>
+            {{$factures->links()}}
+        </div>
     </div>
 
+    
     <div>
-        {{$factures->links()}}
-    </div>
-
-    <div>
-
+        
     </div>
 
 </div>
