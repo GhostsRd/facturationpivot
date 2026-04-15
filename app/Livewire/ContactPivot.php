@@ -87,11 +87,11 @@ public function update()
             'services' => $this->services,
             'localite' => $this->localite,
             'budget' => $this->budget,
-            'airtel' => $this->cleanNumber($this->airtel),
-            'telma' => $this->cleanNumber($this->telma),
-            'orange' => $this->cleanNumber($this->orange),
+            'airtel' => $this->airtel,
+            'telma' => $this->telma,
+            'orange' =>$this->orange,
             'mail' => $this->mail,
-            'updated_at' => now(),
+           // 'updated_at' => now(),
         ]);
 
     session()->flash('success', 'Contact modifié ✅');
