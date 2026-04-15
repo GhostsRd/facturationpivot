@@ -1,92 +1,175 @@
 <div class="container bg-white shadow p-2 rounded-1 ">
-    @if(auth()->user()->email  ==  config('app.email')  )
-      <h4 class="fw-bold text-success mt-1">Facture telma</h4>
-      <div class="row">
-          <div class="col-lg-3">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                     importer 
-                 </button>   
+    @if(auth()->user()->email == config('app.email') )
+    <h4 class="fw-bold text-success mt-1">Facture telma</h4>
+    <div class="row">
+        <div class="col-lg-3 ">
 
-            </div>
-            <div class="col-lg-5">
-                    <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm" placeholder="Recherccher un contact">
+
+            <form wire:submit.prevent="import" class="space-y-3">
+
+                <input type="file" wire:model="file" class="form-control">
+
+                @error('file')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <button type="submit" class="btn mt-1 btn-sm btn-success">
+                    Importer
+                </button>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            <div class="d-flex gap-2">
+
+                {{-- Mois --}}
+                <select wire:model="mois" class="form-select">
+                    <option value="">Mois</option>
+                    <option value="1">Janvier</option>
+                    <option value="2">Février</option>
+                    <option value="3">Mars</option>
+                    <option value="4">Avril</option>
+                    <option value="5">Mai</option>
+                    <option value="6">Juin</option>
+                    <option value="7">Juillet</option>
+                    <option value="8">Août</option>
+                    <option value="9">Septembre</option>
+                    <option value="10">Octobre</option>
+                    <option value="11">Novembre</option>
+                    <option value="12">Décembre</option>
+                </select>
+
+                {{-- Année --}}
+                <select wire:model="annee" class="form-select">
+                    <option value="">Année</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+
+                <select wire:model="Facture_telma" class="form-select">
+                    <option value="">-- Toutes les factures --</option>
+
+                    @foreach($filtrefactures as $f)
+                    <option value="{{ $f->Facture_telma }}">
+                        {{ $f->Facture_telma }}
+                    </option>
+                    @endforeach
+                </select>
+                <div>
+                    @if (!empty($annee) and !empty($mois) and !empty($Facture_telma))
+
+                    <button class="btn btn-sm btn-warning">Calculer facture</button>
+                    @endif
+                </div>
+
+                @if(count($selected) > 0)
+                <div class="alert alert-warning">
+                    {{ count($selected) }} élément(s) sélectionné(s)
+                </div>
+                @endif
+                <button wire:click="deleteSelected" class="btn btn-danger"
+                    onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
+                    Supprimer sélection
+                </button>
+
             </div>
         </div>
-      @else
-      <h4 class="fw-bold text-muted mt-1">Historique versement</h4>
-          
-      @endif
-      <hr>
+    </div>
+    @else
+
+    @endif
+    <hr>
 
 
-       <div class="modal fade" wire:ignore.self id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" wire:ignore.self id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nouveau contact</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nouveau facture</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" wire:submit.prevent="store" >
-                <div class="modal-body">
+                <form action="" wire:submit.prevent="store">
+                    <div class="modal-body">
                         <label for="">Nom du client</label>
-                        <input type="text"  class="form-control" placeholder="Nom de produit">
+                        <input type="text" class="form-control" placeholder="Nom de produit">
                         <label for="">numero de compte</label>
-                        <input type="number" name="" id=""  class="form-control">
+                        <input type="number" name="" id="" class="form-control">
 
                         </textarea>
                         <label for="">Solde (Ar)</label>
                         <input type="number" class="form-control" placeholder="Nouveau">
-                
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-      <div class="table-responsive" style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;" >
-        {{-- {{$contacts}} --}}
-          <table class="table text-muted  table-hover align-middle" wire:poll >
-             <thead class="">
-                 {{-- <tr>
-                
-                 <th class="bg-white text-nowrap">Numero</th>
-                 <th class="bg-white text-nowrap">Utilisateur</th>
-                 
-                 <th class="bg-white text-nowrap">Services</th>
-                 <th class="bg-white text-nowrap">Code budgetaire</th>
-                 <th class="bg-white text-nowrap">GL code</th>
-                 <th class="bg-white text-nowrap">Departement</th>
-
-           
-             </tr> --}}
-             </thead>
-                    <tbody>
-            {{-- @foreach ($contacts as $contact)
+    <div class="table-responsive"
+        style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
+        {{-- {{$factures}} --}}
+        <table class="table text-muted  table-hover align-middle" wire:poll>
+            <thead>
                 <tr>
-               
-                    <td class="text-nowrap">{{ $contact->num }}</td>
-                    <td class="text-nowrap">{{ $contact->utilisateur }}</td>
-     
-                    <td class="text-nowrap">{{ $contact->services }}</td>
-                    <td class="text-nowrap">{{ $contact->code_budgetaire }}</td>
-                    <td class="text-nowrap">{{ $contact->gl_code }}</td>
-                    <td class="text-nowrap">{{ $contact->departement }}</td>
-              
+                    <th>
+                        <input type="checkbox" wire:model="selectAll">
+                    </th>
+                    <th class="bg-white text-nowrap">Nom de compte</th>
+                    <th class="bg-white text-nowrap">Compte</th>
+                    <th class="bg-white text-nowrap">Profil de facturation</th>
+                    <th class="bg-white text-nowrap">Facture TELMA</th>
+                    <th class="bg-white text-nowrap">MSISDN</th>
+                    <th class="bg-white text-nowrap">Abonnement</th>
+                    <th class="bg-white text-nowrap">Montant HT</th>
+                    <th class="bg-white text-nowrap">Droit d'accises</th>
+                    <th class="bg-white text-nowrap">TVA / TMP</th>
+                    <th class="bg-white text-nowrap">Montant TTC</th>
+                    <th class="bg-white text-nowrap">Date</th>
                 </tr>
-            @endforeach --}}
-        </tbody>
-         </table>
-      </div>
-    
-    <div>
-      
+            <tbody>
+                @forelse ($factures as $facture)
+                <tr>
+                    <td>
+                        <input type="checkbox" value="{{ $facture->id }}" wire:model="selected">
+                    </td>
+                    <td class="text-nowrap">{{ $facture->NOM_DE_COMPTE }}</td>
+                    <td class="text-nowrap">{{ $facture->Compte }}</td>
+                    <td class="text-nowrap">{{ $facture->Profil_de_facturation }}</td>
+                    <td class="text-nowrap">{{ $facture->Facture_TELMA }}</td>
+                    <td class="text-nowrap">{{ $facture->msisdn }}</td>
+                    <td class="text-nowrap">{{ $facture->Abonnement }}</td>
+                    <td class="text-nowrap">{{ $facture->Montant_HT }}</td>
+                    <td class="text-nowrap">{{ $facture->Droit_d_accises }}</td>
+                    <td class="text-nowrap">{{ $facture->TVA_TMP }}</td>
+                    <td class="text-nowrap">{{ $facture->Montant_TTC }}</td>
+                    <td class="text-nowrap">
+                        {{$facture->Date}}
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="11" class="text-center text-muted">
+                        Aucune donnée disponible
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-  
-</div>
-</div>
-</div>
 
+    <div>
+        {{$factures->links()}}
+    </div>
+
+    <div>
+
+    </div>
+
+</div>
+</div>
+</div>

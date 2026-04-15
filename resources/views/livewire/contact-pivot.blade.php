@@ -11,8 +11,8 @@
             <div class="col-lg-5">
                     <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm" placeholder="Recherccher un contact">
             </div>
-            <div class="col-lg-2">
-                <select name="" wire:model='recherche' id="" class="form-control-sm">
+            <div class="col-lg-1 ">
+                <select name="" wire:model='recherche' id="" class="form-control-sm border-0">
                     
                     <option value="service">Service</option>
                     <option value="it">IT</option>
@@ -23,8 +23,8 @@
                     <option value="soin">Soin primaire</option>
                 </select>
             </div>
-            <div class="col-lg-2">
-                <select name="" wire:model='recherche' id="" class="form-control-sm">
+            <div class="col-lg-1">
+                <select name="" wire:model='recherche' id="" class="form-control-sm border-0">
                     <option value="ranomafana">Ranomafana</option>
                     <option value="fianara">fianarantsoa</option>
                     <option value="kelilalina">Kelilalina</option>
@@ -98,7 +98,9 @@
                     <tbody>
             @foreach ($contacts as $contact)
                 <tr>
-                    <td class="text-nowrap">{{ $contact->id }}</td>
+                    <td class="text-nowrap">
+                        <input type="checkbox">
+                    </td>
 
                     <td class="text-nowrap">{{ $contact->nom }}</td>
                     <td class="text-nowrap">{{ $contact->prenom }}</td>
