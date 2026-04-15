@@ -69,7 +69,7 @@
 
                 {{-- FORM --}}
                 <form wire:submit.prevent="store">
-
+                         @csrf
                     <div class="modal-body">
 
                         <div class="row">
@@ -169,7 +169,7 @@
 
                 {{-- FORM --}}
                 <form wire:submit.prevent="update">
-
+                     @csrf
                     <div class="modal-body">
                         <div class="row">
 

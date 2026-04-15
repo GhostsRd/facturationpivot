@@ -6,7 +6,7 @@
 
 
             <form wire:submit.prevent="import" class="space-y-3">
-
+                 @csrf
                 <input type="file" wire:model="file" class="form-control">
 
                 @error('file')
@@ -89,6 +89,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="" wire:submit.prevent="store">
+                     @csrf
                     <div class="modal-body">
                         <label for="">Nom du client</label>
                         <input type="text" class="form-control" placeholder="Nom de produit">
