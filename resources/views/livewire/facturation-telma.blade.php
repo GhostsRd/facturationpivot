@@ -18,7 +18,7 @@
                 </button>
             </form>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-8">
             <div class="d-flex gap-2">
 
                 {{-- Mois --}}
@@ -58,18 +58,17 @@
                 <div>
                     @if (!empty($annee) and !empty($mois) and !empty($Facture_telma))
 
-                    <button class="btn btn-sm btn-warning">Calculer facture</button>
+                    <button class="btn btn-sm btn-warning" wire:click="calculFacture({{ $annee }}, {{ $mois }}, '{{ $Facture_telma }}')">Calculer facture</button>
                     @endif
                 </div>
 
-                @if(count($selected) > 0)
-                <div class="alert alert-warning">
-                    {{ count($selected) }} élément(s) sélectionné(s)
-                </div>
-                @endif
-                <button wire:click="deleteSelected" class="btn btn-danger"
+               
+                    @if(count($selected) > 0)
+                    <button wire:click="deleteSelected" class="btn btn-danger"
                     onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
-                    Supprimer sélection
+                    Supprimer (
+                        {{ count($selected) }}  )
+                        @endif 
                 </button>
 
             </div>

@@ -22,9 +22,53 @@ class FacturationTelma extends Component
     public $selected = [];
     public $selectAll = false;
 
+
+    public function calculFacture($annee,$mois,$facture){
+
+    $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
+    $TOTAL_IT = 0;
+    foreach($contacts as $c){
+      $airtel = trim($c->airtel);
+        $telma = trim($c->telma);
+        $orange = trim($c->airtel);
+
+        $airtel = preg_replace('/[^\d+]/', '', $airtel);
+        $telma = preg_replace('/[^\d+]/', '', $telma);
+        $orange = preg_replace('/[^\d+]/', '', $orange);
+
+        $data = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->where('id',$c->id)->update([
+            'airtel' => $airtel,
+            'telma' => $telma,
+            'orange' => $orange,
+
+        ]);
+        
+        if($c->budget == "AS6-OPS-MVT"){
+           $factures = DB::connection('mysql_second')
+                    ->table('facture')
+                    ->when($this->mois, function ($q) {
+                    $q->whereMonth('Date', $this->mois);})
+                    ->when($this->annee, function ($q) {
+                        $q->whereYear('Date', $this->annee);
+                    })
+                    ->when($this->Facture_telma, function ($q) {
+                        $q->where('Facture_telma', $this->Facture_telma);
+                    })
+                    ->where('msisdn', $c->telma)->get();
+                    foreach ($factures as $f) {
+                      
+                        $TOTAL_IT = $TOTAL_IT + $f->Montant_TTC;
+                    }
+                    }
+                    
+                    }
+                    
+        dd($TOTAL_IT);
+    }
+
     public function deleteSelected()
 {
-    DB::table('facture')
+    DB::connection('mysql_second')->table('facture')
         ->whereIn('id', $this->selected)
         ->delete();
 

@@ -41,7 +41,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{url('contacts')}}">
                     {{ config('app.name', 'Laravel') }}  
    
                 </a>
