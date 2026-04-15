@@ -13,7 +13,7 @@ class ExampleTest extends TestCase
     public function test_the_application_returns_a_successful_response(): void
     {
     
-        $response = $this->get('/')->followRedirects();
-        $response->assertStatus(200);
+        $response = $this->followingRedirects()->get('/');
+         $response->assertStatus(200);
     }
 }
