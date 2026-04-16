@@ -13,8 +13,8 @@
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
                 placeholder="Recherccher un contact">
         </div>
-        <div class="col-lg-1 ">
-            <select name="" wire:model='recherche' id="" class="form-control-sm border-0">
+        <div class="col-lg-1 mx-1 ">
+            <select name="" wire:model='recherche' id="" class="form-control-sm border-0 shadow-sm">
 
                 <option value="service">Service</option>
                 <option value="it">IT</option>
@@ -26,7 +26,7 @@
             </select>
         </div>
         <div class="col-lg-1">
-            <select name="" wire:model='recherche' id="" class="form-control-sm border-0">
+            <select name="" wire:model='recherche' id="" class="form-control-sm border-0 shadow-sm">
                 <option value="ranomafana">Ranomafana</option>
                 <option value="fianara">fianarantsoa</option>
                 <option value="kelilalina">Kelilalina</option>
@@ -242,10 +242,10 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive mt-1"
+    <div class=" mt-1"
         style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
-        <table class="table text-muted  table-hover align-middle" wire:poll>
+        <table class="table-responsive table text-muted  table-hover align-middle" wire:poll>
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
