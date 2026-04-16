@@ -13,9 +13,9 @@
 
                         <div class="row mb-3">
                             
-                            <label for="email" class="col-md-4 col-form-label text-md-end"><i class="text-danger bi bi-envelope"></i>{{ __('Adresse e-mail') }}</label>
+                            {{-- <label for="email" class="col-md-4 col-form-label text-md-end"><i class="text-danger bi bi-envelope"></i>{{ __('Adresse e-mail') }}</label> --}}
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="email" type="email" placeholder="E-mail" class="form-control border-0 shadow-sm @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -27,9 +27,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label>
+                            {{-- <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label> --}}
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="password" placeholder="Mot de passe" type="password" class="form-control border-0 shadow-sm @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 ">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-8 ">
                                 <button type="submit" class="btn btn-primary btn-sm border-0 shadow-sm">
                                     {{ __('Se connecter') }}
                                 </button>
