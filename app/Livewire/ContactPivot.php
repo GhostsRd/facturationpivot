@@ -118,6 +118,7 @@ public function update()
                     $q->where('services', $this->service);})
         ->when($this->localites, function ($q) {
                     $q->where('localite', 'like', '%' . $this->localites . '%');})
+        ->orderBy('nom', 'asc')
         ->get();
             return view('livewire.contact-pivot',
         [

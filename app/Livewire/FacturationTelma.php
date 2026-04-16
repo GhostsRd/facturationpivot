@@ -114,7 +114,7 @@ class FacturationTelma extends Component
         })
 
         ->orderBy('Date', 'desc')
-        ->paginate(15);
+        ->paginate(25);
 
         return view('livewire.facturation-telma',[
             'factures'=> $factures,

@@ -1,12 +1,13 @@
 <div class="container bg-white shadow  rounded-1 ">
-    @if(auth()->user()->email == config('app.email') )
-    <h4 class="fw-bold text-muted pt-1">Listes des contacts</h4>
+    <h4 class="fw-bold text-muted pt-2">Listes des contacts</h4>
     <div class="row">
         <div class="col-lg-3">
+            @if(auth()->user()->email ?? 'guest' == config('app.email') )
             <button type="button" class="btn btn-primary border-0 btn-sm" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 Nouveau
             </button>
+            @endif
 
         </div>
         <div class="col-lg-5">
@@ -24,7 +25,7 @@
                     <option value="entrepot">entrepot</option>
                     <option value="soin">Soin primaire</option>
                 </select>
-            
+
                 <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
                     <option value="">Localisation</option>
                     <option value="ranomafana">Ranomafana</option>
@@ -35,21 +36,19 @@
                     <option value="Antananarivo">Antananarivo</option>
                     <option value="nosy varika">Nosy varika</option>
                 </select>
-            
+                @if(auth()->user()->email ?? 'guest' == config('app.email') )
                 @if(count($selected) > 0)
                 <button class="btn btn-sm btn-danger border-0 shadow-sm " wire:click="deleteSelected"
                     onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
                     Supprimer ({{ count($selected) }})
                 </button>
                 @endif
+                @endif
             </div>
         </div>
 
     </div>
-    @else
-    <h4 class="fw-bold text-muted mt-1">Historique versement</h4>
 
-    @endif
 
 
 
@@ -231,10 +230,11 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             Annuler
                         </button>
-
+                        @if(auth()->user()->email ?? 'guest' == config('app.email') )
                         <button type="submit" class="btn btn-warning">
                             Mettre à jour
                         </button>
+                        @endif
                     </div>
 
                 </form>
@@ -248,8 +248,11 @@
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
-                    <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-person-fill"></i> Nom</th>
+                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
+
+                     <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
+                     @endif
+                    <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Nom</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Prenom</th>
                     {{-- <th class="bg-white">Date Operation</th> --}}
                     <th class="bg-white text-nowrap"><i class="bi bi-briefcase-fill"></i> Poste</th>
@@ -269,12 +272,14 @@
                     {{-- <th class="bg-white"> Date de modification</th> --}}
                 </tr>
             </thead>
-            <tbody style="cursor: pointer">
+            <tbody style="cursor: pointer" class="small">
                 @foreach ($contacts as $contact)
                 <tr>
+                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
                     <td class="bg-white">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
+                    @endif
 
                     <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->nom }}</td>

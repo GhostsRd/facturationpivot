@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('contact-pivot');
-})->middleware('auth');;
+});
 
 Route::get('/audit-produit', function () {
     return view('audit-produit');
@@ -22,7 +22,7 @@ Route::get('/audit-produit', function () {
 
 Route::get('/contacts', function () {
     return view('contact-pivot');
-})->middleware('auth');
+});
 
 Route::get('/facturation-telma', function () {
     return view('facturation-telma');

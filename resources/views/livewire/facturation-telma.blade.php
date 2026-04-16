@@ -1,5 +1,5 @@
 <div class="container bg-white shadow p-2 rounded-1 ">
-    @if(auth()->user()->email == config('app.email') )
+    @if(auth()->user()->email ?? 'guest' == config('app.email') )
     <h4 class="fw-bold text-muted mt-1">Facture telma</h4>
     <div class="row">
         <div class="col-lg-4 ">
@@ -142,7 +142,7 @@
                     <th class="bg-white text-nowrap">Montant TTC</th>
                     <th class="bg-white text-nowrap">Date</th>
                 </tr>
-            <tbody class="text-muted">
+            <tbody class="text-muted small">
                 @forelse ($factures as $facture)
                 <tr>
                     <td class="bg-white text-nowrap">

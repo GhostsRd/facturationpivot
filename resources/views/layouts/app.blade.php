@@ -60,13 +60,13 @@
                                 Clients
                             </a>
                          </li> --}}
-                         @if(auth()->user()->email  ==  config('app.email')  )
-                            <li class="mx-2">
-                                <a class="nav-link" href="{{url('contacts')}}">
-                                    Contacts
-                                    {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
-                                </a>
-                            </li>
+                         <li class="mx-2">
+                             <a class="nav-link" href="{{url('contacts')}}">
+                                 Contacts
+                                 {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
+                             </a>
+                         </li>
+                         @if(auth()->user()->email ?? 'guest'  ==  config('app.email')  )
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('facturation-telma')}}">
                                     Facturation-telma
@@ -89,13 +89,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
                                 </li>
                             @endif
                         @else
