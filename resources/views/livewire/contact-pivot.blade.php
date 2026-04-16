@@ -1,6 +1,6 @@
-<div class="container bg-white shadow p-2 rounded-1 ">
+<div class="container bg-white shadow  rounded-1 ">
     @if(auth()->user()->email == config('app.email') )
-    <h4 class="fw-bold text-muted mt-1">Listes des contacts</h4>
+    <h4 class="fw-bold text-muted pt-1">Listes des contacts</h4>
     <div class="row">
         <div class="col-lg-3">
             <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
@@ -14,9 +14,8 @@
                 placeholder="Recherccher un contact">
         </div>
         <div class="col-lg-1 mx-1 ">
-            <select name="" wire:model='recherche' id="" class="form-control-sm border-0 shadow-sm">
-
-                <option value="service">Service</option>
+            <select name="" wire:model='service' id="" class="form-control-sm border-0 shadow-sm">
+                <option value="">Services</option>
                 <option value="it">IT</option>
                 <option value="RH">RH</option>
                 <option value="SG">SG</option>
@@ -26,7 +25,8 @@
             </select>
         </div>
         <div class="col-lg-1">
-            <select name="" wire:model='recherche' id="" class="form-control-sm border-0 shadow-sm">
+            <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
+                <option value="">Localisation</option>
                 <option value="ranomafana">Ranomafana</option>
                 <option value="fianara">fianarantsoa</option>
                 <option value="kelilalina">Kelilalina</option>

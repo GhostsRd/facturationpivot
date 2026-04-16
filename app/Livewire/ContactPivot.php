@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ContactPivot extends Component
 {
-    public $recherche;
+    public $recherche,$service,$localites;
     public $nom, $prenom, $poste, $services, $localite;
     public $budget, $airtel, $telma, $orange, $mail;
     public $contact_id;
@@ -105,6 +105,7 @@ public function update()
       
       $contacts = DB::connection('mysql_second')
         ->table('base_flotte_telephoniques_pivot')
+        
         ->where(function ($query) {
             $query->where('nom', 'like', '%' . $this->recherche . '%')
                 ->orWhere('telma', 'like', '%' . $this->recherche . '%')
@@ -113,6 +114,10 @@ public function update()
                 ->orWhere('localite', 'like', '%' . $this->recherche . '%')
                 ->orWhere('services', 'like', '%' . $this->recherche . '%');
         })
+        ->when($this->service, function ($q) {
+                    $q->where('services', $this->service);})
+        ->when($this->localites, function ($q) {
+                    $q->where('localite', 'like', '%' . $this->localites . '%');})
         ->get();
             return view('livewire.contact-pivot',
         [
