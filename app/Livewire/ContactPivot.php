@@ -40,6 +40,9 @@ class ContactPivot extends Component
         session()->flash('success', 'Suppression réussie ✅');
     }
 }
+public function resetFilters(){
+    $this->reset();
+}
     public function store()
 {
 

@@ -140,9 +140,12 @@
 
                     {{-- FOOTER --}}
                     <div class="modal-footer">
+                        
                         <button type="button" class="btn btn-sm border-0 shadow-sm btn-secondary" data-bs-dismiss="modal">
                             Annuler
                         </button>
+                            <button type="button" class="btn btn-sm border-0 shadow-sm btn-secondary" wire:click="resetFilters">
+                                Réinitialiser
 
                         <button type="submit" class="btn btn-sm border-0 shadow-sm btn-primary">
                             Enregistrer
