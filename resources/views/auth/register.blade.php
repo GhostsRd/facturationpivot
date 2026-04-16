@@ -5,7 +5,7 @@
     <div class="row  justify-content-center">
         <div class="col-md-4 mt-5 border-0">
             <div class="card  bg-white border-0 shadow-sm">
-                <div class="card-header border-0 fw-bold"><i class="bi bi-person-fill border rounded-pill px-2 py-1"></i> {{ __('Creer un compte') }}</div>
+                <div class="card-header border-0 fw-bold"><i class="bi bi-person-fill shadow-sm  rounded-pill px-2 py-1"></i> {{ __('Creer un compte') }}</div>
 
                 <div class="card-body ">
                     <form method="POST" action="{{ route('register') }}">

@@ -42,6 +42,7 @@ class ContactPivot extends Component
 }
     public function store()
 {
+
     DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->insert([
         'nom' => $this->nom,
         'prenom' => $this->prenom,

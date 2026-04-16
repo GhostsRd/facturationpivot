@@ -16,7 +16,7 @@
         </div>
         <div class="col-lg-4 justify-content-end d-flex ">
             <div class="d-flex gap-2">
-                <select name="" wire:model='service' id="" class="form-control-sm border-0 shadow-sm">
+                <select name="" wire:model='service' id="" style="cursor: pointer" class="form-control-sm border-0 shadow-sm">
                     <option value="">Services</option>
                     <option value="it">IT</option>
                     <option value="RH">RH</option>
@@ -26,7 +26,7 @@
                     <option value="soin">Soin primaire</option>
                 </select>
 
-                <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
+                <select name="" wire:model='localites' id="" style="cursor: pointer" class="form-control-sm border-0 shadow-sm">
                     <option value="">Localisation</option>
                     <option value="ranomafana">Ranomafana</option>
                     <option value="fianara">fianarantsoa</option>
@@ -38,7 +38,7 @@
                 </select>
                 @if(auth()->user()->email ?? 'guest' == config('app.email') )
                 @if(count($selected) > 0)
-                <button class="btn btn-sm btn-danger border-0 shadow-sm " wire:click="deleteSelected"
+                <button class="btn btn-sm btn-danger border-0 shadow-sm " style="cursor: pointer" wire:click="deleteSelected"
                     onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
                     Supprimer ({{ count($selected) }})
                 </button>
@@ -67,7 +67,7 @@
                 </div>
 
                 {{-- FORM --}}
-                <form wire:submit.prevent="store">
+                <form wire:submit.prevent="store" class="small">
                     @csrf
                     <div class="modal-body">
 
@@ -75,63 +75,63 @@
 
                             {{-- NOM --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Nom</label>
-                                <input type="text" wire:model="nom" class="form-control">
+                                <label class="form-label text-muted">Nom</label>
+                                <input type="text" placeholder="Nom d'utilisateur" wire:model="nom" class="form-control form-control-sm border-0 shadow-sm">
                                 @error('nom') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
 
                             {{-- PRENOM --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Prénom</label>
-                                <input type="text" wire:model="prenom" class="form-control">
+                                <label class="form-label text-muted">Prénom</label>
+                                <input type="text" placeholder="Prenom " wire:model="prenom" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- POSTE --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Poste</label>
-                                <input type="text" wire:model="poste" class="form-control">
+                                <label class="form-label text-muted">Poste</label>
+                                <input type="text" placeholder="Poste" wire:model="poste" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- SERVICE --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Service</label>
-                                <input type="text" wire:model="services" class="form-control">
+                                <label class="form-label text-muted">Service</label>
+                                <input type="text" placeholder="Service" wire:model="services" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- LOCALITE --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Localité</label>
-                                <input type="text" wire:model="localite" class="form-control">
+                                <label class="form-label text-muted">Localité</label>
+                                <input type="text" placeholder="Localité" wire:model="localite" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- BUDGET --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Budget</label>
-                                <input type="text" wire:model="budget" class="form-control">
+                                <label class="form-label text-muted">Budget</label>
+                                <input type="text" placeholder="Budget" wire:model="budget" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- AIRTEL --}}
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Airtel</label>
-                                <input type="text" wire:model="airtel" class="form-control">
+                                <label class="form-label text-muted">Airtel</label>
+                                <input type="text" placeholder="Numéro Airtel" wire:model="airtel" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- TELMA --}}
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Telma</label>
-                                <input type="text" wire:model="telma" class="form-control">
+                                <label class="form-label text-muted">Telma</label>
+                                <input type="text" placeholder="Numéro Telma" wire:model="telma" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- ORANGE --}}
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Orange</label>
-                                <input type="text" wire:model="orange" class="form-control">
+                                <label class="form-label text-muted">Orange</label>
+                                <input type="text" placeholder="Numéro Orange" wire:model="orange" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             {{-- EMAIL --}}
                             <div class="col-md-12 mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" wire:model="mail" class="form-control">
+                                <label class="form-label text-muted">Email</label>
+                                <input type="email" placeholder="Email" wire:model="mail" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                         </div>
@@ -140,11 +140,11 @@
 
                     {{-- FOOTER --}}
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-sm border-0 shadow-sm btn-secondary" data-bs-dismiss="modal">
                             Annuler
                         </button>
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-sm border-0 shadow-sm btn-primary">
                             Enregistrer
                         </button>
                     </div>
@@ -167,59 +167,59 @@
                 </div>
 
                 {{-- FORM --}}
-                <form wire:submit.prevent="update">
+                <form wire:submit.prevent="update" class="small">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Nom</label>
-                                <input type="text" wire:model="nom" class="form-control">
+                                <label class="form-label text-muted">Nom</label>
+                                <input type="text" wire:model="nom" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Prénom</label>
-                                <input type="text" wire:model="prenom" class="form-control">
+                                <label class="form-label text-muted">Prénom</label>
+                                <input type="text" wire:model="prenom" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Poste</label>
-                                <input type="text" wire:model="poste" class="form-control">
+                                <label class="form-label text-muted">Poste</label>
+                                <input type="text" wire:model="poste" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Service</label>
-                                <input type="text" wire:model="services" class="form-control">
+                                <label class="form-label text-muted">Service</label>
+                                <input type="text" wire:model="services" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Localité</label>
-                                <input type="text" wire:model="localite" class="form-control">
+                                <label class="form-label text-muted">Localité</label>
+                                <input type="text" wire:model="localite" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Budget</label>
-                                <input type="text" wire:model="budget" class="form-control">
+                                <label class="form-label text-muted">Budget</label>
+                                <input type="text" wire:model="budget" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Airtel</label>
-                                <input type="text" wire:model="airtel" class="form-control">
+                                <label class="form-label text-muted">Airtel</label>
+                                <input type="text" wire:model="airtel" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Telma</label>
-                                <input type="text" wire:model="telma" class="form-control">
+                                <label class="form-label text-muted">Telma</label>
+                                <input type="text" wire:model="telma" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Orange</label>
-                                <input type="text" wire:model="orange" class="form-control">
+                                <label class="form-label text-muted">Orange</label>
+                                <input type="text" wire:model="orange" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" wire:model="mail" class="form-control">
+                                <label class="form-label text-muted">Email</label>
+                                <input type="email" wire:model="mail" class="form-control form-control-sm border-0 shadow-sm">
                             </div>
 
                         </div>
@@ -227,11 +227,11 @@
 
                     {{-- FOOTER --}}
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-sm border-0 shadow-sm btn-secondary" data-bs-dismiss="modal">
                             Annuler
                         </button>
                         @if(auth()->user()->email ?? 'guest' == config('app.email') )
-                        <button type="submit" class="btn btn-warning">
+                        <button type="submit" class="btn btn-sm border-0 shadow-sm btn-warning">
                             Mettre à jour
                         </button>
                         @endif
