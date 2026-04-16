@@ -13,7 +13,7 @@
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
 
-                <button type="submit" class="btn mt-1 btn-sm btn-success">
+                <button type="submit" class="btn mt-2 btn-sm btn-success">
                     Importer
                 </button>
             </form>
@@ -77,7 +77,7 @@
     @else
 
     @endif
-    <hr>
+   
 
 
     <div class="modal fade" wire:ignore.self id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -50,7 +50,7 @@
     <h4 class="fw-bold text-muted mt-1">Historique versement</h4>
 
     @endif
-    <hr>
+  
 
 
     <div class="modal fade" wire:ignore.self id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -242,7 +242,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive"
+    <div class="table-responsive mt-1"
         style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
         <table class="table text-muted  table-hover align-middle" wire:poll>
@@ -291,7 +291,7 @@
 
                     <td class="text-nowrap">{{ $contact->mail }}</td>
                     <td>
-                        <button class="btn btn-sm btn-warning" wire:click="edit({{ $contact->id }})"
+                        <button class="btn btn-sm btn-outline-warning" wire:click="edit({{ $contact->id }})"
                             data-bs-toggle="modal" data-bs-target="#editModal">
                             Modifier
                         </button>
