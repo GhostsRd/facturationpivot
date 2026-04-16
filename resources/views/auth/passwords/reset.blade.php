@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('content')
-<div class="container">
+<div class="container border-0 shadow-sm">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+        <div class="col-md-8 border-0 shadow-sm">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header border-0 shadow-sm">{{ __('Reinitialiser le mot de passe') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
