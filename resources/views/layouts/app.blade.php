@@ -41,6 +41,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <img class="rounded-2 mx-1" width="35" src="{{asset('/logoPivot.png')}}" alt="">
                 <a class="navbar-brand" href="{{url('contacts')}}">
                     {{ config('app.name', 'Laravel') }}  
    
@@ -62,7 +63,8 @@
                          @if(auth()->user()->email  ==  config('app.email')  )
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('contacts')}}">
-                                    contacts
+                                    Contacts
+                                    {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
                                 </a>
                             </li>
                             <li class="mx-2">
@@ -109,7 +111,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Deconnecter') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -148,7 +148,7 @@
                     <td class="bg-white text-nowrap">
                         <input type="checkbox" value="{{ $facture->id }}" wire:model="selected">
                     </td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->NOM_DE_COMPTE }}</td>
+                    <td class="bg-white text-nowrap text-muted"> {{ $facture->NOM_DE_COMPTE }}</td>
                     <td class="bg-white text-nowrap text-muted">{{ $facture->Compte }}</td>
                     <td class="bg-white text-nowrap text-muted">{{ $facture->Profil_de_facturation }}</td>
                     <td class="bg-white text-nowrap text-muted">{{ $facture->Facture_TELMA }}</td>

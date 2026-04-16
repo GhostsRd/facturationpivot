@@ -3,13 +3,13 @@
     <h4 class="fw-bold text-muted pt-1">Listes des contacts</h4>
     <div class="row">
         <div class="col-lg-3">
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary border-0 btn-sm" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 Nouveau
             </button>
 
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
                 placeholder="Recherccher un contact">
         </div>
@@ -24,7 +24,7 @@
                 <option value="soin">Soin primaire</option>
             </select>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-1 mx-1">
             <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
                 <option value="">Localisation</option>
                 <option value="ranomafana">Ranomafana</option>
@@ -36,15 +36,15 @@
                 <option value="nosy varika">Nosy varika</option>
             </select>
         </div>
-        <div class="col-lg-1 mx-1">
-            @if(count($selected) > 0)
-            <button class="btn btn-sm btn-danger" wire:click="deleteSelected"
+        <div class="col-lg-2 mx-1">
+           @if(count($selected) > 0) 
+            <button class="btn btn-sm btn-danger border-0 shadow-sm mx-2" wire:click="deleteSelected"
                 onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
                   
-                         {{ count($selected) }} Supprimer
+                          Supprimer ({{ count($selected) }})
                     </div>
                 </button>
-                @endif
+               @endif 
     </div>
     @else
     <h4 class="fw-bold text-muted mt-1">Historique versement</h4>
@@ -250,19 +250,19 @@
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
                     <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
-                    <th class="bg-white text-nowrap">Nom</th>
-                    <th class="bg-white text-nowrap">Prenom</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-person-fill"></i> Nom</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Prenom</th>
                     {{-- <th class="bg-white">Date Operation</th> --}}
-                    <th class="bg-white text-nowrap">Poste</th>
-                    <th class="bg-white text-nowrap">Services</th>
-                    <th class="bg-white text-nowrap">localite</th>
-                    <th class="bg-white text-nowrap">budget</th>
-                    <th class="bg-white text-nowrap">airtel</th>
-                    <th class="bg-white text-nowrap">telma</th>
-                    <th class="bg-white text-nowrap">orange</th>
-                    <th class="bg-white text-nowrap">email</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-briefcase-fill"></i> Poste</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-building-gear"></i> Services</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-geo-alt-fill"></i> localite</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-currency-dollar"></i> budget</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> airtel</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> Yas</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> orange</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-envelope-fill"></i> email</th>
 
-                    <th>action</th>
+                    {{-- <th>action</th> --}}
 
 
 
@@ -270,32 +270,33 @@
                     {{-- <th class="bg-white"> Date de modification</th> --}}
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="cursor: pointer">
                 @foreach ($contacts as $contact)
                 <tr>
                     <td class="bg-white">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
-                    <td class="bg-white text-nowrap">{{ $contact->nom }}</td>
-                    <td class="bg-white text-nowrap">{{ $contact->prenom }}</td>
+                    
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->nom }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-person"></i> {{ $contact->prenom }}</td>
 
-                    <td class="bg-white text-nowrap">{{ $contact->poste }}</td>
-                    <td class="bg-white text-nowrap">{{ $contact->services }}</td>
-                    <td class="bg-white text-nowrap">{{ $contact->localite }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase"></i> {{ $contact->poste }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}</td>
 
-                    <td class="bg-white text-nowrap">{{ $contact->budget }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget }}</td>
 
-                    <td class="bg-white text-nowrap">{{ $contact->airtel }}</td>
-                    <td class="bg-white text-nowrap">{{ $contact->telma }}</td>
-                    <td class="bg-white text-nowrap">{{ $contact->orange }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20" src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15" src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20" src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
 
-                    <td class="bg-white text-nowrap">{{ $contact->mail }}</td>
-                    <td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{ $contact->mail }}</td>
+                    {{-- <td>
                         <button class="btn btn-sm btn-outline-warning" wire:click="edit({{ $contact->id }})"
                             data-bs-toggle="modal" data-bs-target="#editModal">
                             Modifier
                         </button>
-                    </td>
+                    </td> --}}
                 </tr>
                 @endforeach
             </tbody>
