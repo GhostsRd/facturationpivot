@@ -249,7 +249,7 @@
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
-                    <th><input type="checkbox" wire:model="selectAll"></th>
+                    <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
                     <th class="bg-white text-nowrap">Nom</th>
                     <th class="bg-white text-nowrap">Prenom</th>
                     {{-- <th class="bg-white">Date Operation</th> --}}
@@ -273,23 +273,23 @@
             <tbody>
                 @foreach ($contacts as $contact)
                 <tr>
-                    <td>
+                    <td class="bg-white">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
-                    <td class="text-nowrap">{{ $contact->nom }}</td>
-                    <td class="text-nowrap">{{ $contact->prenom }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->nom }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->prenom }}</td>
 
-                    <td class="text-nowrap">{{ $contact->poste }}</td>
-                    <td class="text-nowrap">{{ $contact->services }}</td>
-                    <td class="text-nowrap">{{ $contact->localite }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->poste }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->services }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->localite }}</td>
 
-                    <td class="text-nowrap">{{ $contact->budget }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->budget }}</td>
 
-                    <td class="text-nowrap">{{ $contact->airtel }}</td>
-                    <td class="text-nowrap">{{ $contact->telma }}</td>
-                    <td class="text-nowrap">{{ $contact->orange }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->airtel }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->telma }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->orange }}</td>
 
-                    <td class="text-nowrap">{{ $contact->mail }}</td>
+                    <td class="bg-white text-nowrap">{{ $contact->mail }}</td>
                     <td>
                         <button class="btn btn-sm btn-outline-warning" wire:click="edit({{ $contact->id }})"
                             data-bs-toggle="modal" data-bs-target="#editModal">
