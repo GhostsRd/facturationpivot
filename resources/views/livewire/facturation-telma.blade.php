@@ -67,7 +67,7 @@
                 <div>
                     @if (!empty($annee) and !empty($mois) and !empty($Facture_telma))
 
-                    <button class="btn btn-sm btn-warning"
+                    <button class="btn btn-sm btn-warning border-0 shadow-sm"
                         wire:click="calculFacture({{ $annee }}, {{ $mois }}, '{{ $Facture_telma }}')">Calculer
                         facture</button>
                     @endif

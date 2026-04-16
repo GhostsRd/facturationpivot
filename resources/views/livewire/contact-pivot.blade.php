@@ -248,10 +248,10 @@
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
-                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
+                    @if(auth()->user()->email ?? 'guest' == config('app.email') )
 
-                     <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
-                     @endif
+                    <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
+                    @endif
                     <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Nom</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Prenom</th>
                     {{-- <th class="bg-white">Date Operation</th> --}}
@@ -275,14 +275,17 @@
             <tbody style="cursor: pointer" class="small ">
                 @foreach ($contacts as $contact)
                 <tr>
-                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
+                    @if(auth()->user()->email ?? 'guest' == config('app.email') )
                     <td class="bg-white">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
                     @endif
 
                     <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->nom }}</td>
+                        wire:click="edit({{ $contact->id }})"> <img
+                            src="https://ui-avatars.com/api/?name={{ urlencode($contact->nom) }}&background=ffffff&color=212529"
+                            class="rounded-circle border border-secondary-subtle bg-white"
+                            style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}</td>
                     <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-person"></i> {{ $contact->prenom }}</td>
 
