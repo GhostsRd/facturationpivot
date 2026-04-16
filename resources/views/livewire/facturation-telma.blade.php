@@ -2,7 +2,7 @@
     @if(auth()->user()->email == config('app.email') )
     <h4 class="fw-bold text-muted mt-1">Facture telma</h4>
     <div class="row">
-        <div class="col-lg-3 ">
+        <div class="col-lg-4 ">
 
 
             <form wire:submit.prevent="import" class="row">
@@ -27,7 +27,7 @@
 
             </form>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8 justify-content-end d-flex">
             <div class="d-flex gap-2">
 
                 {{-- Mois --}}

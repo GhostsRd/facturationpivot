@@ -9,48 +9,48 @@
             </button>
 
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
                 placeholder="Recherccher un contact">
         </div>
-        <div class="col-lg-1 mx-1 ">
-            <select name="" wire:model='service' id="" class="form-control-sm border-0 shadow-sm">
-                <option value="">Services</option>
-                <option value="it">IT</option>
-                <option value="RH">RH</option>
-                <option value="SG">SG</option>
-                <option value="mouvement">mouvement</option>
-                <option value="entrepot">entrepot</option>
-                <option value="soin">Soin primaire</option>
-            </select>
-        </div>
-        <div class="col-lg-1 mx-1">
-            <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
-                <option value="">Localisation</option>
-                <option value="ranomafana">Ranomafana</option>
-                <option value="fianara">fianarantsoa</option>
-                <option value="kelilalina">Kelilalina</option>
-                <option value="boston">Boston</option>
-                <option value="Vohitrandriana">Vohitrandriana</option>
-                <option value="Antananarivo">Antananarivo</option>
-                <option value="nosy varika">Nosy varika</option>
-            </select>
-        </div>
-        <div class="col-lg-2 mx-1">
-           @if(count($selected) > 0) 
-            <button class="btn btn-sm btn-danger border-0 shadow-sm mx-2" wire:click="deleteSelected"
-                onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
-                  
-                          Supprimer ({{ count($selected) }})
-                    </div>
+        <div class="col-lg-4 justify-content-end d-flex ">
+            <div class="d-flex gap-2">
+                <select name="" wire:model='service' id="" class="form-control-sm border-0 shadow-sm">
+                    <option value="">Services</option>
+                    <option value="it">IT</option>
+                    <option value="RH">RH</option>
+                    <option value="SG">SG</option>
+                    <option value="mouvement">mouvement</option>
+                    <option value="entrepot">entrepot</option>
+                    <option value="soin">Soin primaire</option>
+                </select>
+            
+                <select name="" wire:model='localites' id="" class="form-control-sm border-0 shadow-sm">
+                    <option value="">Localisation</option>
+                    <option value="ranomafana">Ranomafana</option>
+                    <option value="fianara">fianarantsoa</option>
+                    <option value="kelilalina">Kelilalina</option>
+                    <option value="boston">Boston</option>
+                    <option value="Vohitrandriana">Vohitrandriana</option>
+                    <option value="Antananarivo">Antananarivo</option>
+                    <option value="nosy varika">Nosy varika</option>
+                </select>
+            
+                @if(count($selected) > 0)
+                <button class="btn btn-sm btn-danger border-0 shadow-sm " wire:click="deleteSelected"
+                    onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
+                    Supprimer ({{ count($selected) }})
                 </button>
-               @endif 
+                @endif
+            </div>
+        </div>
+
     </div>
     @else
     <h4 class="fw-bold text-muted mt-1">Historique versement</h4>
 
     @endif
-  
+
 
 
     <div class="modal fade" wire:ignore.self id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -69,7 +69,7 @@
 
                 {{-- FORM --}}
                 <form wire:submit.prevent="store">
-                         @csrf
+                    @csrf
                     <div class="modal-body">
 
                         <div class="row">
@@ -169,7 +169,7 @@
 
                 {{-- FORM --}}
                 <form wire:submit.prevent="update">
-                     @csrf
+                    @csrf
                     <div class="modal-body">
                         <div class="row">
 
@@ -242,8 +242,7 @@
             </div>
         </div>
     </div>
-    <div class=" mt-1"
-        style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
+    <div class=" mt-1" style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
         <table class="table-responsive table text-muted  table-hover align-middle" wire:poll>
             <thead class="">
@@ -256,7 +255,7 @@
                     <th class="bg-white text-nowrap"><i class="bi bi-briefcase-fill"></i> Poste</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-building-gear"></i> Services</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-geo-alt-fill"></i> localite</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-currency-dollar"></i> budget</th>
+                    <th class="bg-white text-nowrap"><i class="bi bi-currency-dollar-fill"></i> budget</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> airtel</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> Yas</th>
                     <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> orange</th>
@@ -276,21 +275,38 @@
                     <td class="bg-white">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
-                    
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->nom }}</td>
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-person"></i> {{ $contact->prenom }}</td>
 
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase"></i> {{ $contact->poste }}</td>
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services }}</td>
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->nom }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-person"></i> {{ $contact->prenom }}</td>
 
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase"></i> {{ $contact->poste }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services
+                        }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}
+                    </td>
 
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20" src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15" src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20" src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget
+                        }}</td>
 
-                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal" wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{ $contact->mail }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
+                            src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15"
+                            src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
+                            src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
+
+                    <td class="bg-white text-nowrap" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{
+                        $contact->mail }}</td>
                     {{-- <td>
                         <button class="btn btn-sm btn-outline-warning" wire:click="edit({{ $contact->id }})"
                             data-bs-toggle="modal" data-bs-target="#editModal">
