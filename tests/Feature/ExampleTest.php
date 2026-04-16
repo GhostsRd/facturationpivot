@@ -12,7 +12,7 @@ class ExampleTest extends TestCase
      */
     public function test_it_redirects_correctly(): void
         {
-            $response = $this->get('/');
+            $response = $this->followingRedirects()->get('/');
         
             // On change 200 par 302 car ton middleware redirige
             //$response->assertRedirect('/login');
