@@ -66,7 +66,7 @@
                                  {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
                              </a>
                          </li>
-                         @if(auth()->user()->email ?? 'guest'  ==  config('app.email')  )
+                         @if(auth()->user() )
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('facturation-telma')}}">
                                     Facturation-telma
