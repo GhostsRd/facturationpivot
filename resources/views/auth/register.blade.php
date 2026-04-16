@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 border-0">
-            <div class="card border-0 shadow-sm">
+            <div class="card bg-white border-0 shadow-sm">
                 <div class="card-header border-0">{{ __('Creer un compte') }}</div>
 
                 <div class="card-body">
