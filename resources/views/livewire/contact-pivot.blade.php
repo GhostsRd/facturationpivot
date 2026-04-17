@@ -329,9 +329,9 @@
             </tbody>
         </table>
     </div>
-
-    <div>
-
+    
+    <div class="mt-2 mx-2 p-2">
+        <span class="fw-bold">Total :</span> {{count($contacts)?? '0'}} <span class="text-muted">Contact(s) trouvé(s)</span>
     </div>
 
 </div>
