@@ -72,8 +72,6 @@
                         facture</button>
                     @endif
                 </div>
-
-
                 @if(count($selected) > 0)
                 <button wire:click="deleteSelected" class="btn btn-danger"
                     onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">

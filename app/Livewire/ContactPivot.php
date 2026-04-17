@@ -4,14 +4,21 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use App\Imports\Contacts;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ContactPivot extends Component
 {
+    use WithFileUploads;
+
     public $recherche,$service,$localites;
     public $nom, $prenom, $poste, $services, $localite;
     public $budget, $airtel, $telma, $orange, $mail;
     public $contact_id;
     public $selected = [];
+    public $file;
 
     
     public $selectAll = false;
@@ -40,6 +47,20 @@ class ContactPivot extends Component
         session()->flash('success', 'Suppression réussie ✅');
     }
 }
+public function import()
+    {
+        $this->validate([
+            'file' => 'required|file|mimes:xlsx,csv,txt'
+        ]);
+
+        Excel::import(new Contacts, $this->file);
+
+        session()->flash('success', 'Import contacts réussi ✅');
+
+        // reset input
+        $this->reset('file');
+    }
+
 public function resetFilters(){
     $this->reset();
 }

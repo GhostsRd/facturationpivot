@@ -1,16 +1,48 @@
 <div class="container bg-white shadow  rounded-1 ">
     <h4 class="fw-bold text-muted pt-2">Listes des contacts</h4>
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4 row">
             @if(auth()->user()->email ?? 'guest' == config('app.email') )
-            <button type="button" class="btn btn-primary border-0 btn-sm" data-bs-toggle="modal"
+            @if(empty($file))
+            <div class="col-lg-2">
+                <button type="button" class="btn  btn-sm btn-primary border-0" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 Nouveau
-            </button>
+                </button>
+            </div>
+            @else
+            @endif
+
+          
+            <form wire:submit.prevent="import" class="row col-lg-10">
+                @csrf
+              
+
+                    <div class="col-lg-10">
+                        
+                        <input type="file" wire:model="file" class="form-control mt-xs-2 form-control-sm border-0 shadow-sm">
+    
+                        @error('file')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-2">
+                        @if (!empty($file))
+                            
+                        <button type="submit" class="btn  btn-sm btn-primary border-0">
+                            Importer
+                        </button>
+                        @endif
+    
+                    </div>
+                
+
+            </form>
+          
             @endif
 
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
                 placeholder="Recherccher un contact">
         </div>
