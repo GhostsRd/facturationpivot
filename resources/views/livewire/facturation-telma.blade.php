@@ -50,9 +50,16 @@
                 {{-- Année --}}
                 <select wire:model="annee" class="form-control-sm border-0 shadow-sm">
                     <option value="">Année</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
+
+                    @foreach ($annees as $annee)
+                    @if($annee == date('Y'))
+                        <option class="bg-primary text-white" value="{{ $annee }}">{{ $annee }}</option>
+                    @else
+                        <option value="{{ $annee }}">{{ $annee }}</option>
+
+                    @endif
+
+                    @endforeach
                 </select>
 
                 <select wire:model="Facture_telma" class="form-control-sm border-0 shadow-sm">

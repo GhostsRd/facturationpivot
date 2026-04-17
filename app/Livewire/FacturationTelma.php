@@ -18,9 +18,25 @@ class FacturationTelma extends Component
     public $file;
     public $mois = '';
     public $annee = '';
+    public $annees = [];
     public $Facture_telma = "";
     public $selected = [];
     public $selectAll = false;
+
+    public function genererAnnees()
+    {
+        $anneeActuelle = date('Y'); // année actuelle
+
+        // ex: 10 années en arrière + 5 années en avant
+        for ($i = $anneeActuelle - 5; $i <= $anneeActuelle + 5; $i++) {
+            $this->annees[] = $i;
+        }
+    }
+
+    public function mount()
+    {
+        $this->genererAnnees();
+    }
 
 
     public function calculFacture($annee,$mois,$facture){
