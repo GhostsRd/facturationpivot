@@ -49,17 +49,32 @@
         <div class="col-lg-4 justify-content-end d-flex ">
             <div class="d-flex gap-2">
                 <select name="" wire:model='service' id="" style="cursor: pointer" class="form-control-sm border-0 shadow-sm">
-                    <option value="">Services</option>
+                    <option value="">Tous les services</option>
                     <option value="it">IT</option>
                     <option value="RH">RH</option>
                     <option value="SG">SG</option>
-                    <option value="mouvement">mouvement</option>
-                    <option value="entrepot">entrepot</option>
+                    <option value="Infra">Infra</option>
+                    <option value="Recherche">Recherche</option>
+                    <option value="SISN">SISN</option>
+
+                    
+
+                    <option value="APPRO">Appro</option>
+                
+                    <option value="Finance">Finance</option>
+                    <option value="Meal">Meal</option>
+                    <option value="Science">Science</option>
+
+
+                    
+
+                    <option value="mouvement">Mouvement</option>
+                    <option value="entrepot">Entrepot</option>
                     <option value="soin">Soin primaire</option>
                 </select>
 
                 <select name="" wire:model='localites' id="" style="cursor: pointer" class="form-control-sm border-0 shadow-sm">
-                    <option value="">Localisation</option>
+                    <option value="">Tous les localisation</option>
                     <option value="ranomafana">Ranomafana</option>
                     <option value="fianara">fianarantsoa</option>
                     <option value="kelilalina">Kelilalina</option>
