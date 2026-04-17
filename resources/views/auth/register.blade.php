@@ -62,8 +62,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-10 offset-md-4 justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-sm border-0 shadow-sm">
+                            <div class="col-md-6 offset-md-3 justify-content-center">
+                                <button type="submit" class="btn btn-primary col-md-10 btn-sm border-0 shadow-sm">
                                     {{ __('Creer un compte') }}
                                 </button>
                             </div>
