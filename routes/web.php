@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('contact-pivot');
 });
+Route::get('/client', function () {
+    return view('client');
+})->middleware('auth');
 
 Route::get('/audit-produit', function () {
     return view('audit-produit');

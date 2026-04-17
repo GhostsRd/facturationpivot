@@ -10,9 +10,9 @@
                 <div class="row">
 
                     <div class="col-lg-10">
-    
+
                         <input type="file" wire:model="file" class="form-control form-control-sm border-0 shadow-sm">
-    
+
                         @error('file')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -21,13 +21,17 @@
                         <button type="submit" class="btn  btn-sm btn-primary border-0">
                             Importer
                         </button>
-    
+
                     </div>
                 </div>
 
             </form>
         </div>
-        <div class="col-lg-8 justify-content-end d-flex">
+        <div class="col-lg-3">
+            <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
+                placeholder="Recherccher un contact">
+        </div>
+        <div class="col-lg-5 justify-content-end d-flex">
             <div class="d-flex gap-2">
 
                 {{-- Mois --}}
@@ -53,9 +57,9 @@
 
                     @foreach ($annees as $annee)
                     @if($annee == date('Y'))
-                        <option class="bg-primary text-white" value="{{ $annee }}">{{ $annee }}</option>
+                    <option class="bg-primary text-white" value="{{ $annee }}">{{ $annee }}</option>
                     @else
-                        <option value="{{ $annee }}">{{ $annee }}</option>
+                    <option value="{{ $annee }}">{{ $annee }}</option>
 
                     @endif
 
@@ -75,8 +79,16 @@
                     @if (!empty($annee) and !empty($mois) and !empty($Facture_telma))
 
                     <button class="btn btn-sm btn-warning border-0 shadow-sm"
-                        wire:click="calculFacture({{ $annee }}, {{ $mois }}, '{{ $Facture_telma }}')">Calculer
-                        facture</button>
+                        wire:click="calculFacture({{ $annee }}, {{ $mois }}, '{{ $Facture_telma }}')"
+                        wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="calculFacture">
+                            Calculer facture
+                        </span>
+
+                        <span wire:loading wire:target="calculFacture">
+                            Chargement...
+                        </span>
+                    </button>
                     @endif
                 </div>
                 @if(count($selected) > 0)

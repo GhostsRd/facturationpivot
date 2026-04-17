@@ -22,6 +22,7 @@ class FacturationTelma extends Component
     public $Facture_telma = "";
     public $selected = [];
     public $selectAll = false;
+    public $recherche = '';
 
     public function genererAnnees()
     {
@@ -43,8 +44,9 @@ class FacturationTelma extends Component
 
     $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
     $TOTAL_IT = 0;
+    $totaux = [];
     foreach($contacts as $c){
-      $airtel = trim($c->airtel);
+    $airtel = trim($c->airtel);
         $telma = trim($c->telma);
         $orange = trim($c->airtel);
 
@@ -58,30 +60,71 @@ class FacturationTelma extends Component
             'orange' => $orange,
 
         ]);
-        
-        if($c->budget == "AS6-OPS-MVT"){
-           $factures = DB::connection('mysql_second')
-                    ->table('facture')
-                    ->when($this->mois, function ($q) {
-                    $q->whereMonth('Date', $this->mois);})
-                    ->when($this->annee, function ($q) {
-                        $q->whereYear('Date', $this->annee);
-                    })
-                    ->when($this->Facture_telma, function ($q) {
-                        $q->where('Facture_telma', $this->Facture_telma);
-                    })
-                    ->where('msisdn', $c->telma)->get();
-                    foreach ($factures as $f) {
-                      
-                        $TOTAL_IT = $TOTAL_IT + $f->Montant_TTC;
-                    }
-                    }
-                    
-                    }
-                    
-        dd($TOTAL_IT);
-    }
 
+        $code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();
+
+
+            foreach ($code_budgetaires as $code_budgetaire) {
+
+                // clé = budget
+                $budget = $code_budgetaire->budget;
+                if($c->budget == $budget){
+                    $factures = DB::connection('mysql_second')
+                        ->table('facture')
+                        ->when($this->mois, function ($q) {
+                            $q->whereMonth('Date', $this->mois);
+                        })
+                        ->when($this->annee, function ($q) {
+                            $q->whereYear('Date', $this->annee);
+                        })
+                        ->when($this->Facture_telma, function ($q) {
+                            $q->where('Facture_telma', $this->Facture_telma);
+                        })
+                        ->where('msisdn', $c->telma)
+                        ->get();
+    
+                    $total = 0;
+
+                    foreach ($factures as $f) {
+                        $val = str_replace([' ', ','], ['', '.'], $f->Montant_TTC);
+                        $total += (float) $val;
+                    }
+
+                    $totaux[$budget] = $total;
+               
+                }
+
+                /*if($c->budget == $code_budgetaire->budget){
+
+                    $factures = DB::connection('mysql_second')
+                        ->table('facture')
+                        ->when($this->mois, function ($q) {
+                            $q->whereMonth('Date', $this->mois);
+                        })
+                        ->when($this->annee, function ($q) {
+                            $q->whereYear('Date', $this->annee);
+                        })
+                        ->when($this->Facture_telma, function ($q) {
+                            $q->where('Facture_telma', $this->Facture_telma);
+                        })
+                        ->where('msisdn', $c->telma)
+                        ->get();
+    
+                    $total = 0;
+    
+                    foreach ($factures as $f) {
+                        $total += $f->Montant_TTC;
+                    }
+                    }
+                    
+                    // stockage dynamique par budget
+                    */
+                    }  
+                    
+                    }
+                   
+                    dd($totaux,$c->telma);
+    }
     public function deleteSelected()
 {
     DB::connection('mysql_second')->table('facture')
@@ -127,6 +170,12 @@ class FacturationTelma extends Component
         })
         ->when($this->Facture_telma, function ($q) {
             $q->where('Facture_telma', $this->Facture_telma);
+        })
+        ->when($this->Facture_telma, function ($q) {
+            $q->where('Facture_telma', $this->Facture_telma);
+        })
+        ->when($this->recherche, function ($q) {
+            $q->where('msisdn', 'like', '%' . $this->recherche . '%');
         })
 
         ->orderBy('Date', 'desc')

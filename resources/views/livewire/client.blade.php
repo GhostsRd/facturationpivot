@@ -75,8 +75,9 @@
             <tr>
                 {{-- <th scope="col" class="bg-white">#</th> --}}
                 <th scope="col" class="bg-white">Numero de compte</th>
-                <th scope="col" class="bg-white">Nom du client</th>
-                <th scope="col" class="bg-white">Solde (Ar)</th>
+                <th scope="col" class="bg-white">Nom d'utilisateur</th>
+                <th>Email</th>
+                {{-- <th scope="col" class="bg-white">Solde (Ar)</th> --}}
                 <th class="bg-white">Action</th>
               
                 
