@@ -19,7 +19,14 @@
                     </div>
                     <div class="col-lg-2">
                         <button type="submit" class="btn  btn-sm btn-primary border-0">
+                           
+                            <span wire:loading.remove wire:target="import">
                             Importer
+                        </span>
+
+                            <span wire:loading wire:target="import">
+                            Chargement...
+                        </span>
                         </button>
 
                     </div>
@@ -92,7 +99,7 @@
                     @endif
                 </div>
                 @if(count($selected) > 0)
-                <button wire:click="deleteSelected" class="btn btn-danger"
+                <button wire:click="deleteSelected" class="btn btn-sm border-0 shadow-sm btn-danger"
                     onclick="confirm('Confirmer la suppression ?') || event.stopImmediatePropagation()">
                     Supprimer (
                     {{ count($selected) }} )

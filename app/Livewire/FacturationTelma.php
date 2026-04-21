@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TotauxFacturationExport;
 use App\Imports\Facture;
 use Illuminate\Support\Facades\DB;
 
@@ -91,8 +92,9 @@ class FacturationTelma extends Component
             }
         }
         $total_budget = array_sum($this->totaux);
-  //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();                
-    dd($this->totaux,$total_budget);
+        //dd($this->totaux,$total_budget);
+        return Excel::download(new TotauxFacturationExport($this->totaux), 'facturation_pivot.xlsx');
+        //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();                
     }
 
     public function deleteSelected()
