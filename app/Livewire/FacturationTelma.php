@@ -38,6 +38,7 @@ class FacturationTelma extends Component
     public function mount()
     {
         $this->genererAnnees();
+        $this->selected;
     }
 
 

@@ -27,7 +27,7 @@ class Contacts implements ToCollection
                 'telma'     => isset($row[7]) ? str_pad((string)$row[7], 10, '0', STR_PAD_LEFT) : null,
                 'orange'              => isset($row[8]) ? str_pad((string)$row[8], 10, '0', STR_PAD_LEFT) : null,
                 'mail'          => $row[9],
-              c
+        
             
             ]);
 
