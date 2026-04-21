@@ -13,7 +13,6 @@
             @else
             @endif
 
-          
             <form wire:submit.prevent="import" class="row col-lg-10">
                 @csrf
               
@@ -44,7 +43,7 @@
         </div>
         <div class="col-lg-4">
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
-                placeholder="Recherccher un contact">
+                placeholder="Rechercher un contact">
         </div>
         <div class="col-lg-4 justify-content-end d-flex ">
             <div class="d-flex gap-2">

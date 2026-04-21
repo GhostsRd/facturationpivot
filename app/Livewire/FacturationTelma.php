@@ -88,6 +88,8 @@ class FacturationTelma extends Component
                           //  $this->totaux[$contact->budget]['somme'] = array_sum($this->totaux[$contact->budget]);
                     }
                      // $this->totaux[$contact->budget] = array_sum($this->totaux[$contact->budget][$contact->telma] );
+                }else {
+                    $this->totaux['inconnu'][$facture->msisdn] = $this->totaux['inconnu'][$facture->msisdn] ?? 0  +  $facture->Montant_TTC;
                 }
             }
         }
