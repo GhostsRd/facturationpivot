@@ -137,6 +137,7 @@ public function update()
                 ->orWhere('airtel', 'like', '%' . $this->recherche . '%')
                 ->orWhere('orange', 'like', '%' . $this->recherche . '%')
                 ->orWhere('localite', 'like', '%' . $this->recherche . '%')
+                ->orWhere('budget', 'like', '%' . $this->recherche . '%')
                 ->orWhere('services', 'like', '%' . $this->recherche . '%');
         })
         ->when($this->service, function ($q) {

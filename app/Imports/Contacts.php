@@ -23,11 +23,11 @@ class Contacts implements ToCollection
                 'services'        => $row[3],
                 'localite'               =>$row[4],
                 'budget'           => $row[5],
-                'airtel'           => $row[6],
-                'telma'     => $row[7],
-                'orange'              => $row[8],
-                'mail'          =>$row[9],
-              
+                'airtel'           => isset($row[6]) ? str_pad((string)$row[6], 10, '0', STR_PAD_LEFT) : null,
+                'telma'     => isset($row[7]) ? str_pad((string)$row[7], 10, '0', STR_PAD_LEFT) : null,
+                'orange'              => isset($row[8]) ? str_pad((string)$row[8], 10, '0', STR_PAD_LEFT) : null,
+                'mail'          => $row[9],
+              c
             
             ]);
 

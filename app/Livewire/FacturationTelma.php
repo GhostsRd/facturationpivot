@@ -23,6 +23,7 @@ class FacturationTelma extends Component
     public $selected = [];
     public $selectAll = false;
     public $recherche = '';
+    public $totaux = [];
 
     public function genererAnnees()
     {
@@ -40,36 +41,26 @@ class FacturationTelma extends Component
     }
 
 
-    public function calculFacture($annee,$mois,$facture){
+    /*$airtel = trim($c->airtel);
+    $telma = trim($c->telma);
+    $orange = trim($c->airtel);
 
+    $airtel = preg_replace('/[^\d+]/', '', $airtel);
+    $telma = preg_replace('/[^\d+]/', '', $telma);
+    $orange = preg_replace('/[^\d+]/', '', $orange);
+
+    $data = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->where('id',$c->id)->update([
+        'airtel' => $airtel,
+        'telma' => $telma,
+        'orange' => $orange,
+
+    ]);*/
+    public function calculFacture($annee,$mois,$facture){
+        
     $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
     $TOTAL_IT = 0;
-    $totaux = [];
-    foreach($contacts as $c){
-    $airtel = trim($c->airtel);
-        $telma = trim($c->telma);
-        $orange = trim($c->airtel);
-
-        $airtel = preg_replace('/[^\d+]/', '', $airtel);
-        $telma = preg_replace('/[^\d+]/', '', $telma);
-        $orange = preg_replace('/[^\d+]/', '', $orange);
-
-        $data = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->where('id',$c->id)->update([
-            'airtel' => $airtel,
-            'telma' => $telma,
-            'orange' => $orange,
-
-        ]);
-
-        $code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();
-
-
-            foreach ($code_budgetaires as $code_budgetaire) {
-
-                // clé = budget
-                $budget = $code_budgetaire->budget;
-                if($c->budget == $budget){
-                    $factures = DB::connection('mysql_second')
+    //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();
+    $factures = DB::connection('mysql_second')
                         ->table('facture')
                         ->when($this->mois, function ($q) {
                             $q->whereMonth('Date', $this->mois);
@@ -80,51 +71,29 @@ class FacturationTelma extends Component
                         ->when($this->Facture_telma, function ($q) {
                             $q->where('Facture_telma', $this->Facture_telma);
                         })
-                        ->where('msisdn', $c->telma)
-                        ->get();
-    
-                    $total = 0;
-
-                    foreach ($factures as $f) {
-                        $val = str_replace([' ', ','], ['', '.'], $f->Montant_TTC);
-                        $total += (float) $val;
-                    }
-
-                    $totaux[$budget] = $total;
-               
-                }
-
-                /*if($c->budget == $code_budgetaire->budget){
-
-                    $factures = DB::connection('mysql_second')
-                        ->table('facture')
-                        ->when($this->mois, function ($q) {
-                            $q->whereMonth('Date', $this->mois);
-                        })
-                        ->when($this->annee, function ($q) {
-                            $q->whereYear('Date', $this->annee);
-                        })
-                        ->when($this->Facture_telma, function ($q) {
-                            $q->where('Facture_telma', $this->Facture_telma);
-                        })
-                        ->where('msisdn', $c->telma)
-                        ->get();
-    
-                    $total = 0;
-    
-                    foreach ($factures as $f) {
-                        $total += $f->Montant_TTC;
-                    }
-                    }
-                    
-                    // stockage dynamique par budget
-                    */
-                    }  
-                    
-                    }
                    
-                    dd($totaux,$c->telma);
+                        ->get();
+
+        foreach ($factures as $facture) {
+            $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
+            foreach ($contacts as $contact) {
+                if($contact->telma == $facture->msisdn){
+                    if(isset($this->totaux[$contact->budget][$contact->telma])){
+                        $this->totaux[$contact->budget][$contact->telma] +=  $facture->Montant_TTC;
+                        
+                        }else {
+                            $this->totaux[$contact->budget][$contact->telma] =  $facture->Montant_TTC;
+                          //  $this->totaux[$contact->budget]['somme'] = array_sum($this->totaux[$contact->budget]);
+                    }
+                     // $this->totaux[$contact->budget] = array_sum($this->totaux[$contact->budget][$contact->telma] );
+                }
+            }
+        }
+        $total_budget = array_sum($this->totaux);
+  //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();                
+    dd($this->totaux,$total_budget);
     }
+
     public function deleteSelected()
 {
     DB::connection('mysql_second')->table('facture')

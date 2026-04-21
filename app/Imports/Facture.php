@@ -12,6 +12,7 @@ class Facture implements ToCollection
     
     public function collection($rows)
     {
+        set_time_limit(300);
         foreach ($rows as $row) {
            // dd($row[1]);
             DB::connection('mysql_second')
