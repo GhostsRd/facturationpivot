@@ -61,6 +61,7 @@ class FacturationTelma extends Component
         
     $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
     $TOTAL_IT = 0;
+    $this->totaux['inconnu'] = [];
     //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();
     $factures = DB::connection('mysql_second')
                         ->table('facture')
@@ -73,28 +74,37 @@ class FacturationTelma extends Component
                         ->when($this->Facture_telma, function ($q) {
                             $q->where('Facture_telma', $this->Facture_telma);
                         })
-                   
                         ->get();
+                     $tot = 0;
+                    foreach ($factures as $facture) {
+                $trouve = false; // On initialise un indicateur
 
-        foreach ($factures as $facture) {
-            $contacts = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->get();
-            foreach ($contacts as $contact) {
-                if($contact->telma == $facture->msisdn){
-                    if(isset($this->totaux[$contact->budget][$contact->telma])){
-                        $this->totaux[$contact->budget][$contact->telma] +=  $facture->Montant_TTC;
-                        
-                        }else {
-                            $this->totaux[$contact->budget][$contact->telma] =  $facture->Montant_TTC;
-                          //  $this->totaux[$contact->budget]['somme'] = array_sum($this->totaux[$contact->budget]);
+                foreach ($contacts as $contact) {
+                    if ($contact->telma == $facture->msisdn) {
+                        // On a trouvé le contact !
+                        if (isset($this->totaux[$contact->budget][$facture->msisdn])) {
+                            $this->totaux[$contact->budget][$facture->msisdn] += intval($facture->Montant_TTC);
+                        } else {
+                            $this->totaux[$contact->budget][$facture->msisdn] = intval($facture->Montant_TTC);
+                        }
+                        $trouve = true; // On marque comme trouvé
+                        break; // On arrête de chercher dans les contacts pour cette facture
                     }
-                     // $this->totaux[$contact->budget] = array_sum($this->totaux[$contact->budget][$contact->telma] );
-                }else {
-                    $this->totaux['inconnu'][$facture->msisdn] = $this->totaux['inconnu'][$facture->msisdn] ?? 0  +  $facture->Montant_TTC;
+                }
+
+                // C'est SEULEMENT ici, après la boucle des contacts, qu'on vérifie si on l'a trouvé
+                if (!$trouve) {
+                    $this->totaux['inconnu'][$facture->msisdn] = ($this->totaux['inconnu'][$facture->msisdn] ?? 0) + intval($facture->Montant_TTC);
                 }
             }
+                //dd($tot);
+        $total_general = 0;
+
+        foreach ($this->totaux as $budget => $numeros) {
+            // On additionne la somme de chaque sous-tableau
+            $total_general += array_sum($numeros);
         }
-        $total_budget = array_sum($this->totaux);
-        //dd($this->totaux,$total_budget);
+        //dd($this->totaux,$total_general);
         return Excel::download(new TotauxFacturationExport($this->totaux), 'facturation_pivot.xlsx');
         //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();                
     }

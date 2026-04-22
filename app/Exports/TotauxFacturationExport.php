@@ -29,11 +29,11 @@ class TotauxFacturationExport implements FromCollection, WithHeadings
             }
             
             // OPTIONNEL : Ajouter une ligne de sous-total par budget
-            $data[] = [
+           /* $data[] = [
                 'budget'  => "TOTAL $nomBudget",
                 'numero'  => '',
                 'montant' => array_sum($numeros)
-            ];
+            ];*/
         }
 
         return collect($data);
