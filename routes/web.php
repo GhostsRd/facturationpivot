@@ -31,6 +31,10 @@ Route::get('/facturation-telma', function () {
     return view('facturation-telma');
 })->middleware('auth');
 
+Route::get('/facturation-airtel', function () {
+    return view('facture-airtel');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

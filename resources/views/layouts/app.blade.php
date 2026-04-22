@@ -72,6 +72,11 @@
                                     Facturation-telma
                                 </a>
                             </li> 
+                             <li class="mx-2">
+                                <a class="nav-link" href="{{url('facturation-airtel')}}">
+                                    Facturation-airtel
+                                </a>
+                            </li> 
                             {{-- @else
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('audit-versement')}}">

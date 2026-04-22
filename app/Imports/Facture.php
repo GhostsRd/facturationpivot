@@ -27,10 +27,8 @@ class Facture implements ToCollection
                 'Droit_d_accises'     => $row[7],
                 'TVA_TMP'              => $row[8],
                 'Montant_TTC'          =>$row[9],
-                'Date'                 => $row[10],
-            
+                'Date'                 => $row[10],  
             ]);
-
         }
     }
 }
