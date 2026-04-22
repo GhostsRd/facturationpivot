@@ -66,7 +66,7 @@
                                  {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
                              </a>
                          </li>
-                         @if(isset(auth()->user()->email_verified_at))
+                         @if(isset(auth()->user()?->email_verified_at))
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('facturation-telma')}}">
                                     Facturation-telma
@@ -78,12 +78,12 @@
                                 </a>
                             </li> 
                             @endif
-                            @if(auth()->user()->email == config('app.email'))
-                                <li class="mx-2">
-                                    <a class="nav-link" href="{{url('configuration')}}">
-                                        Configuration
-                                    </a>
-                                </li> 
+                            @if(auth()->user()?->email == config('app.email'))
+                             <li class="mx-2">
+                                <a class="nav-link" href="{{url('configuration')}}">
+                                    Configuration
+                                </a>
+                            </li> 
                             @endif
                             {{-- @else
                             <li class="mx-2">
