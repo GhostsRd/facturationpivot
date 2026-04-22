@@ -42,7 +42,6 @@
                 <th scope="col" class="bg-white">Nom d'utilisateur</th>
                 <th>Email</th>
                 <th>Verifier</th>
-                <th>Action</th>
                 {{-- <th scope="col" class="bg-white">Solde (Ar)</th> --}}
                 <th class="bg-white">Action</th>
               
@@ -60,14 +59,28 @@
                             <img src="https://ui-avatars.com/api/?name={{ $client->name }}&background=808080&color=ffff"  class="rounded-circle" width="20" height="20">
                         {{ $client->name }}</td>
                     <td class="bg-white">{{ $client->email }}</td>
-                    <td class="bg-white">{{ $client->email_verified_at ? 'True' : 'False' }}</td>
+                    <td class="bg-white">{{ $client->email_verified_at ?? 'False' }}</td>
                     <td class="bg-white">
-                        <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1" wire:click="edit({{ $client->num_compte }})">
-                         <i class="bi bi-pencil"></i> 
-                        </button>
-                       @if(auth()->user()->email == config('app.email'))
-                       <button class="btn btn-sm" wire:click="delete({{ $client->num_compte }})">   <i class="bi bi-trash text-danger"></i></button></td>
-                       @endif
+                        <div>
+                            <h3>
+                         
+                                <span style="font-weight:bold; color: {{ $status ? 'green' : 'red' }}">
+                                 
+                                </span>
+                            </h3>
+
+                            <button class="border-0 rounded-pill"
+                                wire:click="toggle({{$client->id}})"
+                                style="
+                                    cursor:pointer;
+                                    background: {{$client->email_verified_at ? '#4caf50' : '#ccc' }};
+                                    color:white;
+                                "
+                            >
+                                {{ $status ? 'Désactiver' : 'Activer' }}
+                            </button>
+                        </div>
+                      
                 </tr>
             @endforeach
         </tbody>
