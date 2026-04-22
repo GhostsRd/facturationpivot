@@ -208,3 +208,11 @@
 </div>
 </div>
 </div>
+
+<script>
+    window.addEventListener('reload-after-download', event => {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000); // 3 secondes
+    });
+</script>

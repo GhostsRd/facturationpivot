@@ -16,26 +16,69 @@ class TotauxFacturationExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $data = [];
 
-        // On transforme votre tableau associatif en lignes plates pour Excel
-        foreach ($this->totaux as $nomBudget => $numeros) {
-            foreach ($numeros as $numTel => $montant) {
-                $data[] = [
-                    'budget'  => $nomBudget,
-                    'numero'  => $numTel,
-                    'montant' => $montant
-                ];
-            }
-            
-            // OPTIONNEL : Ajouter une ligne de sous-total par budget
-           /* $data[] = [
-                'budget'  => "TOTAL $nomBudget",
-                'numero'  => '',
-                'montant' => array_sum($numeros)
-            ];*/
+
+    $data = [];
+    $totalGeneral = 0;
+
+    foreach ($this->totaux as $nomBudget => $numeros) {
+        $sousTotalBudget = 0;
+
+        // 1. On ajoute tous les numéros de ce budget
+        foreach ($numeros as $numTel => $montant) {
+            $data[] = [
+                'budget'  => $nomBudget,
+                'numero'  => $numTel,
+                'montant' => $montant
+            ];
+            $sousTotalBudget += $montant;
         }
 
+        // 2. On ajoute la ligne de SOUS-TOTAL juste en dessous des numéros du groupe
+       
+
+        // On ajoute une ligne vide pour "respirer" entre deux budgets (optionnel)
+       // $data[] = ['budget' => '', 'numero' => '', 'montant' => ''];
+
+        // On cumule pour le total de fin de page
+        $totalGeneral += $sousTotalBudget;
+    }
+
+    // 3. On ajoute la ligne de TOTAL GÉNÉRAL tout en bas du fichier
+   
+
+
+       $data[] = ['budget' => '', 'numero' => '', 'montant' => ''];
+
+        $data[] = ['budget' => 'Total par code budgetaire', 'numero' => '', 'montant' => ''];
+
+    foreach ($this->totaux as $nomBudget => $numeros) {
+        $sousTotalBudget = 0;
+
+        // 1. On ajoute tous les numéros de ce budget
+        foreach ($numeros as $numTel => $montant) {
+        
+            $sousTotalBudget += $montant;
+        }
+
+        // 2. On ajoute la ligne de SOUS-TOTAL juste en dessous des numéros du groupe
+        $data[] = [
+            'budget'  => " $nomBudget", // Petit préfixe pour le voir de loin
+            'numero'  => '',
+            'montant' => $sousTotalBudget
+        ];
+
+      
+    }
+
+     $data[] = ['budget' => '', 'numero' => '', 'montant' => ''];
+
+     $data[] = [
+        'budget'  => '------TOTAL GÉNÉRAL------',
+        'numero'  => '',
+        'montant' => $totalGeneral
+    ];
+    
         return collect($data);
     }
 
@@ -43,4 +86,6 @@ class TotauxFacturationExport implements FromCollection, WithHeadings
     {
         return ['Budget', 'Numéro Téléphone', 'Montant TTC'];
     }
+
+    
 }

@@ -105,7 +105,10 @@ class FacturationTelma extends Component
             $total_general += array_sum($numeros);
         }
         //dd($this->totaux,$total_general);
-        return Excel::download(new TotauxFacturationExport($this->totaux), 'facturation_pivot.xlsx');
+        $this->dispatch('reload-after-download');
+        return Excel::download(new TotauxFacturationExport($this->totaux), 'facturation_pivot_' . $this->annee . '-' . $this->mois . '.xlsx');
+        
+       
         //$code_budgetaires = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')->select('budget')->distinct()->get();                
     }
 
