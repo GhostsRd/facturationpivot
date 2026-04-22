@@ -76,9 +76,10 @@
                 {{-- <th scope="col" class="bg-white">#</th> --}}
                 <th scope="col" class="bg-white">Numero de compte</th>
                 <th scope="col" class="bg-white">Nom d'utilisateur</th>
-                <th>Email</th>
+                <th class="bg-white">Email</th>
                 {{-- <th scope="col" class="bg-white">Solde (Ar)</th> --}}
-                <th class="bg-white">Action</th>
+                <th class="bg-white">Statut</th>
+               
               
                 
                 
@@ -100,6 +101,8 @@
                        @if(auth()->user()->email == config('app.email'))
                        <button class="btn btn-sm" wire:click="delete({{ $client->num_compte }})">   <i class="bi bi-trash text-danger"></i></button></td>
                        @endif
+                       </td>
+                       <td>Supprimer</td>
                 </tr>
             @endforeach
         </tbody>

@@ -8,8 +8,30 @@ use App\Models\User;
 class Configuration extends Component
 {
     public $id;
+    public $name;
+    public $email;
+
 
     public $status = false; // OFF par défaut
+    public function edit($id)
+    {
+        $client = User::find($id);
+        $this->id = $client->id;
+        $this->name = $client->name;
+        $this->email = $client->email;
+        $this->status = $client->email_verified_at ? true : false;
+    }
+    public function update()
+    {
+        $client = User::find($this->id);
+        $client->name = $this->name;
+        $client->email = $this->email;
+        $client->save();
+
+        $this->reset(['id', 'name', 'email']);
+        $this->dispatch('saved');
+    
+    }
 
     public function toggle($id)
     {
@@ -24,6 +46,12 @@ class Configuration extends Component
             $user->save();
         }
       // User::where('id', $id)->update(['email_verified_at' => now()]);
+    }
+    public function delete($id)
+    {
+        $user  = User::find($id);
+        $user->delete();
+    
     }
 
     public function render()
