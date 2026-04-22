@@ -64,10 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data )
     {
-        $client = new Client;
-        $client->nomclient = $data['name']; 
-        $client->solde = 0; 
-        $client->save();
 
         return User::create([
             'name' => $data['name'],

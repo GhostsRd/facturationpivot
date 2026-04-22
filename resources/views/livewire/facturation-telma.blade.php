@@ -36,7 +36,7 @@
         </div>
         <div class="col-lg-3">
             <input type="text" wire:model='recherche' class="form-control bg-white border-0 shadow-sm"
-                placeholder="Recherccher un contact">
+                placeholder="Rechercher un contact">
         </div>
         <div class="col-lg-5 justify-content-end d-flex">
             <div class="d-flex gap-2">

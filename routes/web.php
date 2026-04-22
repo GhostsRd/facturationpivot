@@ -19,6 +19,9 @@ Route::get('/client', function () {
     return view('client');
 })->middleware('auth');
 
+Route::get('/configuration', function () {
+    return view('configuration');
+})->middleware('auth');
 Route::get('/audit-produit', function () {
     return view('audit-produit');
 })->middleware('auth');

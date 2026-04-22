@@ -15,8 +15,6 @@
 
             <form wire:submit.prevent="import" class="row col-lg-10">
                 @csrf
-              
-
                     <div class="col-lg-10">
                         
                         <input type="file" wire:model="file" class="form-control mt-xs-2 form-control-sm border-0 shadow-sm">
@@ -31,11 +29,8 @@
                         <button type="submit" class="btn  btn-sm btn-primary border-0">
                             Importer
                         </button>
-                        @endif
-    
+                        @endif 
                     </div>
-                
-
             </form>
           
             @endif
@@ -55,11 +50,7 @@
                     <option value="Infra">Infra</option>
                     <option value="Recherche">Recherche</option>
                     <option value="SISN">SISN</option>
-
-                    
-
-                    <option value="APPRO">Appro</option>
-                
+                    <option value="APPRO">Appro</option>              
                     <option value="Finance">Finance</option>
                     <option value="Meal">Meal</option>
                     <option value="Science">Science</option>
@@ -291,9 +282,9 @@
             </div>
         </div>
     </div>
-    <div class=" mt-1" style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
+    <div class=" mt-1 table-responsive " style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
-        <table class="table-responsive table text-muted  table-hover align-middle" wire:poll>
+        <table class="table text-muted  table-hover align-middle" wire:poll>
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}

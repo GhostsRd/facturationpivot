@@ -77,6 +77,11 @@
                                     Facturation-airtel
                                 </a>
                             </li> 
+                             <li class="mx-2">
+                                <a class="nav-link" href="{{url('configuration')}}">
+                                    Configuration
+                                </a>
+                            </li> 
                             {{-- @else
                             <li class="mx-2">
                                 <a class="nav-link" href="{{url('audit-versement')}}">
