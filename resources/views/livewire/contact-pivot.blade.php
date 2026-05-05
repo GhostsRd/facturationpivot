@@ -316,43 +316,43 @@
                 @foreach ($contacts as $contact)
                 <tr>
                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
-                    <td class="bg-white">
+                    <td class="bg-white ">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
                     @endif
 
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"> <img
                             src="https://ui-avatars.com/api/?name={{ urlencode($contact->nom) }}&background=ffffff&color=212529"
                             class="rounded-circle border border-secondary-subtle bg-white"
                             style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}</td>
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-person"></i> {{ $contact->prenom }}</td>
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"> {{ $contact->prenom }} <i class="bi bi-person"></i></td>
 
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase"></i> {{ $contact->poste }}</td>
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase text-primary"></i> {{ $contact->poste }}</td>
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services
                         }}</td>
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}
                     </td>
 
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget
                         }}</td>
 
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
                             src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15"
                             src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
                             src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
 
-                    <td class="bg-white text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{
                         $contact->mail }}</td>
                     {{-- <td>

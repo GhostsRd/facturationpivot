@@ -169,20 +169,20 @@
             <tbody class="text-muted small">
                 @forelse ($factures as $facture)
                 <tr>
-                    <td class="bg-white text-nowrap">
+                    <td class="text-nowrap">
                         <input type="checkbox" value="{{ $facture->id }}" wire:model="selected">
                     </td>
-                    <td class="bg-white text-nowrap text-muted"> {{ $facture->NOM_DE_COMPTE }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Compte }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Profil_de_facturation }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Facture_TELMA }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->msisdn }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Abonnement }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Montant_HT }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{ $facture->Droit_d_accises }}</td>
-                    <td class="bg-white text-nowrap text-muted">{{number_format($facture->TVA_TMP, 0, ',', ' ') }}</td>
-                    <td class="bg-white text-nowrap fw-bold">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
-                    <td class="bg-white text-nowrap">
+                    <td class=" text-nowrap text-muted"> {{ $facture->NOM_DE_COMPTE }}</td>
+                    <td class=" text-nowrap text-muted">{{ $facture->Compte }}</td>
+                    <td class=" text-nowrap text-muted">{{ $facture->Profil_de_facturation }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->Facture_TELMA }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->msisdn }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->Abonnement }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->Montant_HT }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->Droit_d_accises }}</td>
+                    <td class="text-nowrap text-muted">{{number_format($facture->TVA_TMP, 0, ',', ' ') }}</td>
+                    <td class="text-nowrap fw-bold">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
+                    <td class="text-nowrap">
                         {{$facture->Date}}
                     </td>
                 </tr>
