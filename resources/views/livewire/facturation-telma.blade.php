@@ -148,23 +148,23 @@
     <div class="table-responsive mt-2"
         style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$factures}} --}}
-        <table class="table text-muted  table-hover align-middle" wire:poll>
+        <table class="table text-muted small  table-hover align-middle" wire:poll>
             <thead>
                 <tr>
                     <th class="bg-white text-nowrap">
                         <input type="checkbox" wire:model="selectAll">
                     </th>
-                    <th class="bg-white text-nowrap">Nom de compte</th>
-                    <th class="bg-white text-nowrap">Compte</th>
-                    <th class="bg-white text-nowrap">Profil de facturation</th>
-                    <th class="bg-white text-nowrap">Facture TELMA</th>
-                    <th class="bg-white text-nowrap">MSISDN</th>
-                    <th class="bg-white text-nowrap">Abonnement</th>
-                    <th class="bg-white text-nowrap">Montant HT</th>
-                    <th class="bg-white text-nowrap">Droit d'accises</th>
-                    <th class="bg-white text-nowrap">TVA / TMP</th>
-                    <th class="bg-white text-nowrap">Montant TTC</th>
-                    <th class="bg-white text-nowrap">Date</th>
+                    <th class="bg-white text-nowrap text-secondary">Nom de compte</th>
+                    <th class="bg-white text-nowrap text-secondary">Compte</th>
+                    <th class="bg-white text-nowrap text-secondary">Profil de facturation</th>
+                    <th class="bg-white text-nowrap text-secondary">Facture </th>
+                    <th class="bg-white text-nowrap text-secondary">Msisdn</th>
+                    <th class="bg-white text-nowrap text-secondary">Abonnement</th>
+                    <th class="bg-white text-nowrap text-secondary">Montant HT</th>
+                    <th class="bg-white text-nowrap text-secondary">Droit d'accises</th>
+                    <th class="bg-white text-nowrap text-secondary">TVA / TMP</th>
+                    <th class="bg-white text-nowrap text-secondary">Montant TTC</th>
+                    <th class="bg-white text-nowrap text-secondary">Date</th>
                 </tr>
             <tbody class="text-muted small">
                 @forelse ($factures as $facture)
@@ -181,10 +181,9 @@
                     <td class="text-nowrap text-muted">{{ $facture->Montant_HT }}</td>
                     <td class="text-nowrap text-muted">{{ $facture->Droit_d_accises }}</td>
                     <td class="text-nowrap text-muted">{{number_format($facture->TVA_TMP, 0, ',', ' ') }}</td>
-                    <td class="text-nowrap fw-bold">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
-                    <td class="text-nowrap">
-                        {{$facture->Date}}
-                    </td>
+                    <td class="text-nowrap text-muted">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
+                    <td class="text-nowrap text-muted">{{ $facture->Date }}</td>
+                      
                 </tr>
                 @empty
                 <tr>

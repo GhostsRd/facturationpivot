@@ -140,38 +140,38 @@
     <div class="table-responsive mt-2"
         style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$factures}} --}}
-        <table class="table text-muted  table-hover align-middle" wire:poll>
+        <table class="table text-muted small  table-hover align-middle" wire:poll>
             <thead>
                 <tr>
                     <th class="bg-white text-nowrap">
                         <input type="checkbox" wire:model="selectAll">
                     </th>
-                    <th class="bg-white text-nowrap">N_DOSSIER</th>
-                    <th class="bg-white text-nowrap">MSISDN</th>
-                    <th class="bg-white text-nowrap">N_facture</th>
-                    <th class="bg-white text-nowrap">MONTANT_HT</th>
-                    <th class="bg-white text-nowrap">DROIT_ACCISE</th>
-                    <th class="bg-white text-nowrap">TVA</th>
-                    <th class="bg-white text-nowrap">MONTANT_TTC</th>
-                    <th class="bg-white text-nowrap">REMISE</th>
-                    <th class="bg-white text-nowrap">TOTAL_ PAYER</th>
-                    <th class="bg-white text-nowrap">Date</th>
+                    <th class="bg-white text-nowrap text-secondary">Dossier</th>
+                    <th class="bg-white text-nowrap text-secondary">Msisdn</th>
+                    <th class="bg-white text-nowrap text-secondary">Facture</th>
+                    <th class="bg-white text-nowrap text-secondary">Montant ht</th>
+                    <th class="bg-white text-nowrap text-secondary">Droit accise</th>
+                    <th class="bg-white text-nowrap text-secondary">Tva</th>
+                    <th class="bg-white text-nowrap text-secondary">Montant ttc</th>
+                    <th class="bg-white text-nowrap text-secondary">Remise</th>
+                    <th class="bg-white text-nowrap text-secondary">Total payer</th>
+                    <th class="bg-white text-nowrap text-secondary">Date</th>
                 </tr>
             <tbody class="text-muted small">
                     @forelse($factures as $facture)
                     <tr>
                         <td> <input type="checkbox" value="{{ $facture->id }}" wire:model="selected"></td>
-                        <td>{{ $facture->N_DOSSIER }}</td>
-                        <td>{{ $facture->MSISDN }}</td>
-                        <td>{{ $facture->N_facture }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->N_DOSSIER }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->MSISDN }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->N_facture }}</td>
                         {{-- <td>{{ $facture->Facture_AIRTEL }}</td> --}}
-                        <td>{{ $facture->MONTANT_HT }}</td>
-                        <td>{{ $facture->DROIT_ACCISE }}</td>
-                        <td>{{ $facture->TVA }}</td>
-                        <td>{{ $facture->MONTANT_TTC }}</td>
-                        <td>{{ $facture->REMISE }}</td>
-                        <td>{{ $facture->TOTAL_PAYER }}</td>
-                        <td>{{ $facture->Date }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->MONTANT_HT }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->DROIT_ACCISE }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->TVA }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->MONTANT_TTC }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->REMISE }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->TOTAL_PAYER }}</td>
+                        <td class="text-nowrap text-muted">{{ $facture->Date }}</td>
                     </tr>
                 @empty
                     <tr>

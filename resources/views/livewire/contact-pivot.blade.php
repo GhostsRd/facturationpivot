@@ -284,7 +284,7 @@
     </div>
     <div class=" mt-1 table-responsive " style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
-        <table class="table text-muted  table-hover align-middle" wire:poll>
+        <table class="table text-muted small table-hover align-middle" wire:poll>
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
@@ -292,17 +292,17 @@
 
                     <th class="bg-white text-nowrap"><input type="checkbox" wire:model="selectAll"></th>
                     @endif
-                    <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Nom</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-person-lines-fill"></i> Prenom</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-person-lines-fill"></i> Nom</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-person-lines-fill"></i> Prenom</th>
                     {{-- <th class="bg-white">Date Operation</th> --}}
-                    <th class="bg-white text-nowrap"><i class="bi bi-briefcase-fill"></i> Poste</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-building-gear"></i> Services</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-geo-alt-fill"></i> localite</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-currency-dollar-fill"></i> budget</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> airtel</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> Yas</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-phone-fill"></i> orange</th>
-                    <th class="bg-white text-nowrap"><i class="bi bi-envelope-fill"></i> email</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-briefcase-fill"></i> Poste</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-building-gear"></i> Services</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-geo-alt-fill"></i> Localite</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-currency-dollar-fill"></i> Budget</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-phone-fill"></i> Airtel</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-phone-fill"></i> Yas</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-phone-fill"></i> Orange</th>
+                    <th class="bg-white text-nowrap text-muted"><i class="bi bi-envelope-fill"></i> Email</th>
 
                     {{-- <th>action</th> --}}
 
@@ -316,43 +316,43 @@
                 @foreach ($contacts as $contact)
                 <tr>
                     @if(auth()->user()->email ?? 'guest' == config('app.email') )
-                    <td class="bg-white ">
+                    <td class="">
                         <input type="checkbox" value="{{ $contact->id }}" wire:model="selected">
                     </td>
                     @endif
 
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"> <img
                             src="https://ui-avatars.com/api/?name={{ urlencode($contact->nom) }}&background=ffffff&color=212529"
                             class="rounded-circle border border-secondary-subtle bg-white"
                             style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}</td>
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"> {{ $contact->prenom }} <i class="bi bi-person"></i></td>
 
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase text-primary"></i> {{ $contact->poste }}</td>
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase "></i> {{ $contact->poste }}</td>
+                    <td class=" text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services
                         }}</td>
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}
                     </td>
 
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget
                         }}</td>
 
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
                             src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15"
                             src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
                             src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
 
-                    <td class="bg-white  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{
                         $contact->mail }}</td>
                     {{-- <td>
