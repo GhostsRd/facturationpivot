@@ -13,17 +13,26 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
+    <style>
+        .btn-personal{
+            background: #9de7e8;
+            color: white;
+        }
+    </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body style="background: rgba(230, 248, 252, 0.822)">
+<body style="background: rgba(230, 248, 252, 0.559)" style="background: rgba(230, 248, 252, 0.559);font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Noto Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                     <img class="rounded-2 mx-1" width="35" src="{{asset('/logoPivot.png')}}" alt="">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}"
+                style="font-family: 'UnifrakturCook', cursive;font-size: 20px;color: #111;
+                text-shadow: 2px 2px 5px rgba(128, 128, 128, 0.796);
+                letter-spacing: 2px;"
+                >
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

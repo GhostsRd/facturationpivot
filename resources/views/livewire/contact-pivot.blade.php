@@ -1,5 +1,5 @@
 <div class="container bg-white shadow  rounded-1 ">
-    <h4 class="fw-bold text-muted pt-2">Listes des contacts</h4>
+    <h4 class=" text-muted pt-2" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111;">Listes des contacts</h4>
     <div class="row">
         <div class="col-lg-4 row">
             @if(auth()->user()->email ?? 'guest' == config('app.email') )
@@ -284,7 +284,7 @@
     </div>
     <div class=" mt-1 table-responsive " style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
         {{-- {{$contacts}} --}}
-        <table class="table text-muted small table-hover align-middle" wire:poll>
+        <table class="table text-mute small table-hover align-middle" wire:poll>
             <thead class="">
                 <tr>
                     {{-- <th scope="col" class="bg-white">ID</th> --}}
@@ -327,7 +327,7 @@
                             class="rounded-circle border border-secondary-subtle bg-white"
                             style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}</td>
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"> {{ $contact->prenom }} <i class="bi bi-person"></i></td>
+                        wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->prenom }} </td>
 
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
                         wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase "></i> {{ $contact->poste }}</td>

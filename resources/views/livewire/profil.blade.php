@@ -3,20 +3,20 @@
     <div class="row justify-content-center">
         <div class="col-md-6 ">
 
-            <div class="card shadow border-0">
+            <div class="card shadow-sm border-0">
 
                 <!-- Header profil -->
-                <div class="card-header text-center text-dark fw-bold">
-                    <h4 class="mb-0">Profil Utilisateur</h4>
+                <div class="card-header text-center">
+                    <h4 class="mb-0" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111111d5;">Profil Utilisateur</h4>
                 </div>
 
-                <div class="card-body text-center">
+                <div class="card-body text-center bg-white">
 
                     <!-- Avatar -->
                     <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=808080&color=ffff"  class="rounded-circle" width="60" height="60">
 
 
-                    <h5 class="mb-1">{{ Auth::user()->name }}</h5>
+                    <h5 class="mb-1 mt-4" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111111d5;">{{ Auth::user()->name }}</h5>
                     <p class="text-muted">{{ Auth::user()->email }}</p>
 
                     <hr>

@@ -1,6 +1,6 @@
 <div class="container bg-white shadow p-2 rounded-1 ">
     @if(auth()->user()->email ?? 'guest' == config('app.email') )
-    <h4 class="fw-bold text-muted mt-1">Facture telma</h4>
+    <h4 class=" text-muted mt-1" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111;">Facture Yas</h4>
     <div class="row">
         <div class="col-lg-4 ">
 
@@ -164,7 +164,7 @@
                     <th class="bg-white text-nowrap text-secondary">Droit d'accises</th>
                     <th class="bg-white text-nowrap text-secondary">TVA / TMP</th>
                     <th class="bg-white text-nowrap text-secondary">Montant TTC</th>
-                    <th class="bg-white text-nowrap text-secondary">Date</th>
+                    <th class="bg-white text-nowrap text-secondary text-center">Date</th>
                 </tr>
             <tbody class="text-muted small">
                 @forelse ($factures as $facture)
@@ -181,8 +181,8 @@
                     <td class="text-nowrap text-muted">{{ $facture->Montant_HT }}</td>
                     <td class="text-nowrap text-muted">{{ $facture->Droit_d_accises }}</td>
                     <td class="text-nowrap text-muted">{{number_format($facture->TVA_TMP, 0, ',', ' ') }}</td>
-                    <td class="text-nowrap text-muted">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
-                    <td class="text-nowrap text-muted">{{ $facture->Date }}</td>
+                    <td class="text-nowrap text-muted ">{{number_format($facture->Montant_TTC, 0, ',', ' ') }}</td>
+                    <td class="text-nowrap text-muted text-end">{{ $facture->Date }}</td>
                       
                 </tr>
                 @empty

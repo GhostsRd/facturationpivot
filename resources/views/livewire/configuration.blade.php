@@ -1,6 +1,6 @@
 <div class="container bg-white shadow p-2 rounded-2">
 
-    <h4 class="fw-bold text-muted mt-1">Configuration utilisateur</h4>
+    <h4 class=" text-muted mt-1" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111;">Paramètres</h4>
 
     <!-- Button trigger modal -->
 
@@ -35,35 +35,44 @@
     </div>
 
     <table class="table table-sm small mt-2" wire:poll>
+          <colgroup>
+                            <col style="width: 30%">
+                            <col style="width: 40%">
+                            <col style="width: 10%">
+                            <col style="width: 5%">
+                            <col style="width: 5%">
+
+                        </colgroup>
         <thead>
             <tr>
                 {{-- <th scope="col" class="bg-white">#</th> --}}
 
                 <th scope="col" class="bg-white text-muted">Nom d'utilisateur</th>
                 <th class="bg-white text-muted">Email</th>
-                <th class="bg-white text-muted">Verifier</th>
+                <th class="bg-white text-muted">Verifier le</th>
                 {{-- <th scope="col" class="bg-white">Solde (Ar)</th> --}}
                 <th class="bg-white text-muted">Status</th>
-                <th class="bg-white text-muted">Action</th>
+                <th class="bg-white text-muted  text-end">Action</th>
 
 
 
             </tr>
         </thead>
-        <tbody>
+        <tbody class="">
+
 
             @foreach ($clients as $client)
             <tr>
                 {{-- <th scope="row" class="bg-white">{{ $client->num_compte }}</th> --}}
 
-                <td class="bg-white">
+                <td class="text-muted">
                     <img src="https://ui-avatars.com/api/?name={{ $client->name }}&background=808080&color=ffff"
                         class="rounded-circle" width="20" height="20">
                     {{ $client->name }}
                 </td>
-                <td class="bg-white">{{ $client->email }}</td>
-                <td class="bg-white">{{ $client->email_verified_at?->format('d M Y H:i:s') ?? 'False' }}</td>
-                <td class="bg-white">
+                <td class="text-muted">{{ $client->email }}</td>
+                <td class="text-muted">{{ $client->email_verified_at?->format('d M Y H:i:s') ?? 'False' }}</td>
+                <td class="text-muted">
                     <div class="form-check form-switch">
                         <input wire:click="toggle({{$client->id}})" class="form-check-input " type="checkbox"
                             id="switch1"
@@ -71,7 +80,7 @@
                             
                     </div>
                 </td>
-                <td class="bg-white">
+                <td class="justify-content-end text-end text-muted">
                     <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"
                         wire:click="edit({{ $client->id }})">
                         <i class="bi bi-pencil"></i>

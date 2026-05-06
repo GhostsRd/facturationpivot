@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="container">
+<div class="container" >
     <div class="row justify-content-center ">
         <div class="col-md-6 offset-1">
             <div class="card mt-5 col-lg-8 border-0 shadow-sm bg-white">
-                <div class="card-header border-0 fw-bold"><i class="bi bi-person-fill shadow-sm rounded-pill px-2 py-1"></i>  {{ __('Se connecter') }}</div>
+                <div class="card-header border-0 text-muted" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111111e0;"><i class="bi bi-person-fill shadow-sm rounded-pill px-2 py-1"></i>  {{ __('Se connecter') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

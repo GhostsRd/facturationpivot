@@ -15,7 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    {{--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -23,9 +24,9 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
-    
-<script>
-    @media print {
+
+    <script>
+        @media print {
         nav .navbar{
             display: none;
         }
@@ -33,18 +34,21 @@
             display: none;
         }
     }   
-</script>
+    </script>
 
 </head>
 
-<body style="background: rgba(230, 248, 252, 0.822)">
+<body style="background: rgba(230, 248, 252, 0.559);font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Noto Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <img class="rounded-2 mx-1" width="35" src="{{asset('/logoPivot.png')}}" alt="">
-                <a class="navbar-brand" href="{{url('contacts')}}">
-                    {{ config('app.name', 'Laravel') }}  
-   
+                <a class="navbar-brand text-muted" href="{{url('contacts')}}" 
+                style="font-family: 'UnifrakturCook', cursive;font-size: 20px;color: #111;
+                text-shadow: 2px 2px 5px rgba(128, 128, 128, 0.796);
+                letter-spacing: 2px;">
+                    {{ config('app.name', 'Laravel') }}
+
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -55,43 +59,43 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                         {{-- <li class="mx-2" >
+                        {{-- <li class="mx-2">
                             <a class="nav-link" href="{{url('client')}}">
                                 Clients
                             </a>
-                         </li> --}}
-                         <li class="mx-2">
-                             <a class="nav-link" href="{{url('contacts')}}">
-                                 Contacts
-                                 {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
-                             </a>
-                         </li>
-                         @if(isset(auth()->user()?->email_verified_at))
-                            <li class="mx-2">
-                                <a class="nav-link" href="{{url('facturation-telma')}}">
-                                    Facturation-telma
-                                </a>
-                            </li> 
-                             <li class="mx-2">
-                                <a class="nav-link" href="{{url('facturation-airtel')}}">
-                                    Facturation-airtel
-                                </a>
-                            </li> 
-                            @endif
-                            @if(auth()->user()?->email == config('app.email'))
-                             <li class="mx-2">
-                                <a class="nav-link" href="{{url('configuration')}}">
-                                    Configuration
-                                </a>
-                            </li> 
-                            @endif
-                            {{-- @else
-                            <li class="mx-2">
-                                <a class="nav-link" href="{{url('audit-versement')}}">
-                                    Transaction
-                                </a>
-                            </li>  --}}
-                          
+                        </li> --}}
+                        <li class="mx-2">
+                            <a class="nav-link" href="{{url('contacts')}}">
+                                Contacts
+                                {{-- <i class="bi bi-telephone-fill " width="10" height="10"></i> --}}
+                            </a>
+                        </li>
+                        @if(isset(auth()->user()?->email_verified_at))
+                        <li class="mx-2">
+                            <a class="nav-link" href="{{url('facturation-telma')}}">
+                                Facturation-telma
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a class="nav-link" href="{{url('facturation-airtel')}}">
+                                Facturation-airtel
+                            </a>
+                        </li>
+                        @endif
+                        @if(auth()->user()?->email == config('app.email'))
+                        <li class="mx-2">
+                            <a class="nav-link" href="{{url('configuration')}}">
+                                Configuration
+                            </a>
+                        </li>
+                        @endif
+                        {{-- @else
+                        <li class="mx-2">
+                            <a class="nav-link" href="{{url('audit-versement')}}">
+                                Transaction
+                            </a>
+                        </li> --}}
+
 
                     </ul>
 
@@ -99,41 +103,42 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=808080&color=ffff"  class="rounded-circle" width="20" height="20">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=ffff&color=000"
+                                    class="rounded-circle border border-success border-2" width="20" height="20">
 
-                                    {{ Auth::user()->name }}
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end bg-white border-0 shadow"
+                                aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item " href="{{ url('profil', ['name' => Auth::user()->name]) }}">
+                                    {{ __('Profil') }}
+                                </a>
+                                <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Deconnecter') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end bg-white border-0 shadow" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item " href="{{ url('profil', ['name' => Auth::user()->name]) }}">
-                                        {{ __('Profil') }}
-                                    </a>
-                                    <a class="dropdown-item " href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Deconnecter') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -142,7 +147,7 @@
 
 
 
-        <main class="py-4 " >
+        <main class="py-4 ">
             {{ $slot }}
         </main>
     </div>
@@ -154,7 +159,7 @@
     </script> --}}
     @livewireScripts
     <script>
-     
+
     </script>
 </body>
 

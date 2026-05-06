@@ -1,6 +1,6 @@
 <div class="container bg-white shadow p-2 rounded-1 ">
     @if(auth()->user()->email ?? 'guest' == config('app.email') )
-    <h4 class="fw-bold text-muted mt-1">Facture Airtel</h4>
+    <h4 class=" text-muted mt-1" style="font-family: 'UnifrakturCook';font-size: 20px;color: #111;">Facture Airtel</h4>
     <div class="row">
         <div class="col-lg-4 ">
 
@@ -155,7 +155,7 @@
                     <th class="bg-white text-nowrap text-secondary">Montant ttc</th>
                     <th class="bg-white text-nowrap text-secondary">Remise</th>
                     <th class="bg-white text-nowrap text-secondary">Total payer</th>
-                    <th class="bg-white text-nowrap text-secondary">Date</th>
+                    <th class="bg-white text-nowrap text-secondary text-center">Date</th>
                 </tr>
             <tbody class="text-muted small">
                     @forelse($factures as $facture)
@@ -171,7 +171,7 @@
                         <td class="text-nowrap text-muted">{{ $facture->MONTANT_TTC }}</td>
                         <td class="text-nowrap text-muted">{{ $facture->REMISE }}</td>
                         <td class="text-nowrap text-muted">{{ $facture->TOTAL_PAYER }}</td>
-                        <td class="text-nowrap text-muted">{{ $facture->Date }}</td>
+                        <td class="text-nowrap text-muted text-center">{{ $facture->Date }}</td>
                     </tr>
                 @empty
                     <tr>
