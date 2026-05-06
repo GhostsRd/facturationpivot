@@ -322,53 +322,87 @@
                     @endif
 
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"> <img
+                        wire:click="edit({{ $contact->id }})"> 
+                        @if($contact->nom)
+                        <img
                             src="https://ui-avatars.com/api/?name={{ urlencode($contact->nom) }}&background=ffffff&color=212529"
                             class="rounded-circle border border-secondary-subtle bg-white"
-                            style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}</td>
-                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"> <i class="bi bi-person"></i> {{ $contact->prenom }} </td>
+                            style="width: 20px; height: 20px;" alt="{{ $contact->nom }}"> {{ $contact->nom }}
+                        @endif
 
+                        </td>
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-briefcase "></i> {{ $contact->poste }}</td>
-                    <td class=" text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-building-gear"></i> {{ $contact->services
-                        }}</td>
-                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-geo-alt"></i> {{ $contact->localite }}
+                        wire:click="edit({{ $contact->id }})"> 
+                        @if($contact->prenom)
+                        <i class="bi bi-person"></i> {{ $contact->prenom }} 
+                        @endif
                     </td>
 
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="bi bi-currency-dollar"></i> {{ $contact->budget
-                        }}</td>
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->poste)
+                        <i class="bi bi-briefcase "></i> {{ $contact->poste }}
+                        @endif
+                    </td>
+                    <td class=" text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->services)
+                        <i class="bi bi-building-gear"></i> {{ $contact->services }}
+                        @endif
+                    </td>
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->localite)
+                        <i class="bi bi-geo-alt"></i> {{ $contact->localite }}
+                        @endif
+                    </td>
 
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
-                            src="{{asset('/airtel.png')}}" alt="">{{ $contact->airtel }}</td>
-                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="15"
-                            src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}</td>
-                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><img class="rounded-2 mx-1" width="20"
-                            src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}</td>
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->budget)
+                        <i class="bi bi-currency-dollar"></i> 
+                        {{ $contact->budget }}
+                        @endif
+                        </td>
 
                     <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
-                        wire:click="edit({{ $contact->id }})"><i class="text-danger bi bi-envelope"></i> {{
-                        $contact->mail }}</td>
-                    {{-- <td>
-                        <button class="btn btn-sm btn-outline-warning" wire:click="edit({{ $contact->id }})"
-                            data-bs-toggle="modal" data-bs-target="#editModal">
-                            Modifier
-                        </button>
-                    </td> --}}
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->airtel)
+                        <img class="rounded-2 mx-1" width="20"
+                            src="{{asset('/airtel.png')}}" alt="">
+                            {{ $contact->airtel }}
+                        @endif
+                        </td>
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->telma)
+                        <img class="rounded-2 mx-1" width="15"
+                            src="{{asset('/yas.png')}}" alt="">{{ $contact->telma }}
+                        @endif
+                    </td>
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->orange)
+                        <img class="rounded-2 mx-1" width="20"
+                            src="{{asset('/orange.png')}}" alt="">{{ $contact->orange }}
+                        @endif
+                    </td>
+
+                    <td class="  text-nowrap text-muted" data-bs-toggle="modal" data-bs-target="#editModal"
+                        wire:click="edit({{ $contact->id }})">
+                        @if($contact->mail)
+                        <i class="text-danger bi bi-envelope"></i>
+                         {{ $contact->mail }}
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     
-    <div class="mt-2 mx-2 p-2">
-        <span class="fw-bold">Total :</span> {{count($contacts)?? '0'}} <span class="text-muted">Contact(s) trouvé(s)</span>
+    <div class="mt-2 mx-2 p-2 small">
+        <span class="">Total :</span> <span class="fw-bold">{{ count($contacts) ?? '0' }}</span> <span class="text-muted">Contact(s) trouvé(s)</span>
     </div>
 
 </div>

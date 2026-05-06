@@ -25,6 +25,19 @@ class ContactPivot extends Component
     {
         if ($value) {
             $this->selected = DB::connection('mysql_second')->table('base_flotte_telephoniques_pivot')
+            ->where(function ($query) {
+            $query->where('nom', 'like', '%' . $this->recherche . '%')
+                ->orWhere('telma', 'like', '%' . $this->recherche . '%')
+                ->orWhere('airtel', 'like', '%' . $this->recherche . '%')
+                ->orWhere('orange', 'like', '%' . $this->recherche . '%')
+                ->orWhere('localite', 'like', '%' . $this->recherche . '%')
+                ->orWhere('budget', 'like', '%' . $this->recherche . '%')
+                ->orWhere('services', 'like', '%' . $this->recherche . '%');
+        })
+        ->when($this->service, function ($q) {
+                    $q->where('services', $this->service);})
+        ->when($this->localites, function ($q) {
+                    $q->where('localite', 'like', '%' . $this->localites . '%');})
                 ->pluck('id')
                 ->toArray();
         } else {
