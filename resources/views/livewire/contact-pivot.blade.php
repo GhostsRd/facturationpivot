@@ -5,7 +5,7 @@
             @if(auth()->user()->email ?? 'guest' == config('app.email') )
             @if(empty($file))
             <div class="col-lg-2">
-                <button type="button" class="btn  btn-sm btn-primary border-0" data-bs-toggle="modal"
+                <button type="button" class="btn shadow-sm   btn-sm btn-outline-primary  " style="background: rgba(240, 239, 239, 0.901)" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 Nouveau
                 </button>
@@ -26,7 +26,7 @@
                     <div class="col-lg-2">
                         @if (!empty($file))
                             
-                        <button type="submit" class="btn  btn-sm btn-primary border-0">
+                        <button type="submit" class="btn  btn-sm btn-outline-primary border-0">
                             Importer
                         </button>
                         @endif 

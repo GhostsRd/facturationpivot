@@ -18,7 +18,7 @@
                         @enderror
                     </div>
                     <div class="col-lg-2">
-                        <button type="submit" class="btn  btn-sm btn-primary border-0">
+                        <button type="submit" class="btn  btn-sm btn-outline-primary  border">
                            
                             <span wire:loading.remove wire:target="import">
                             Importer
