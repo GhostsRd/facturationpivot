@@ -86,7 +86,7 @@ jobs:
     steps:
       - name: 🚀 Déploiement du conteneur sur le serveur
         run: |
-          cd /home/fraduis/facturationpivot
+          cd /home/fraduis/gpi
           
           # Se connecter à Docker hub depuis le serveur (si privé)
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
