@@ -1,6 +1,10 @@
 name: Laravel CI/CD MySQL Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   laravel-tests:
@@ -53,7 +57,6 @@ jobs:
           DB_PASSWORD: root
         run: php artisan test --without-tty
 
-# NOUVEAU JOB : Build de l'image Docker et Push sur Docker Hub
   build-and-push:
     runs-on: ubuntu-latest
     needs: laravel-tests
@@ -78,25 +81,24 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/facturation:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/facturation:${{ github.sha }}
 
-  # DEPLOIEMENT AUTOMATISÉ CORRIGÉ
   deploy:
     runs-on: self-hosted
     needs: build-and-push
     steps:
       - name: 🚀 Déploiement du conteneur sur le serveur
         run: |
-          # 1. On se place impérativement dans le dossier contenant le docker-compose.yml
+          # On va dans le dossier qui contient le docker-compose.yml
           cd /home/fraduis/gpi
           
-          # 2. Connexion sécurisée à Docker Hub depuis le serveur
+          # Connexion à Docker Hub avec sudo
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | sudo docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           
-          # 3. Récupération de l'image fraîchement buildée par GitHub
+          # Récupération de l'image
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/facturation:latest
           
-          # 4. Relance du service (recherche le fichier docker-compose.yml ici)
+          # Relance du conteneur facturation
           sudo docker compose up -d --no-deps facturation
           
-          # 5. Exécution des commandes internes à Laravel
+          # Migrations et optimisations Laravel
           sudo docker compose exec -T facturation php artisan migrate --force
           sudo docker compose exec -T facturation php artisan optimize
