@@ -88,7 +88,7 @@ jobs:
       - name: 🚀 Déploiement du conteneur sur le serveur
         run: |
           # On va dans le dossier qui contient le docker-compose.yml
-          cd /home/fraduis/gpi
+          cd /home/fraduis/gpi/facturationpivot
           
           # Connexion à Docker Hub avec sudo
           echo "${{ secrets.DOCKERHUB_TOKEN }}" |  docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
