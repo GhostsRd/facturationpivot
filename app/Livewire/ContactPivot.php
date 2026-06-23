@@ -20,6 +20,7 @@ class ContactPivot extends Component
     public $selected = [];
     public $file;
     public $selectAll = false;
+    
 
     public function updatedSelectAll($value)
     {
