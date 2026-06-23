@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  # C'est ce nom exact "facturation" que votre script GitHub Actions va relancer
+  facturation:
+    image: leoncerado/facturation:latest
+    container_name: gpi_facturation_app
+    restart: unless-stopped
+    ports:
+      - "8000:9000" # Adaptez le premier port (8000) selon vos besoins d'accès
+    volumes:
+      - ./.env:/var/www/.env # Lier le fichier .env de production de votre serveur
+    networks:
+      - gpi-network
+
+networks:
+  gpi-network:
+    driver: bridge
