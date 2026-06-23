@@ -91,14 +91,14 @@ jobs:
           cd /home/fraduis/gpi
           
           # Connexion à Docker Hub avec sudo
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | sudo docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" |  docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           
           # Récupération de l'image
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/facturation:latest
+           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/facturation:latest
           
           # Relance du conteneur facturation
-          sudo docker compose up -d --no-deps facturation
+           docker compose up -d --no-deps facturation
           
           # Migrations et optimisations Laravel
-          sudo docker compose exec -T facturation php artisan migrate --force
-          sudo docker compose exec -T facturation php artisan optimize
+           docker compose exec -T facturation php artisan migrate --force
+           docker compose exec -T facturation php artisan optimize
