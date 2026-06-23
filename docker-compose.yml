@@ -7,7 +7,7 @@ services:
     container_name: gpi_facturation_app
     restart: unless-stopped
     ports:
-      - "8000:9000" # Adaptez le premier port (8000) selon vos besoins d'accès
+      - "8001:9000" # Adaptez le premier port (8000) selon vos besoins d'accès
     volumes:
       - ./.env:/var/www/.env # Lier le fichier .env de production de votre serveur
     networks:
